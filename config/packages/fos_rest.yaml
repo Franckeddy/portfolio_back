@@ -1,11 +1,13 @@
 fos_rest:
     view:
       formats: { json: true, xml: false, rss: false }
+      default_engine: twig
       view_response_listener: true
     serializer:
       serialize_null: true
     body_converter:
       enabled: true
     format_listener:
+      # change rules /login -> /'home'
       rules:
         - { path: '^/', priorities: ['json'], fallback_format: 'json' }

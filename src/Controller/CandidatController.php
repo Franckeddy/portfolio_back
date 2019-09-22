@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Candidat;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\Annotations\RequestParam;
+use FOS\RestBundle\Request\ParamFetcherInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -16,6 +18,7 @@ class CandidatController extends AbstractController
 	 *     name = "app_candidat_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
+	 *
 	 * @Rest\View(
 	 *     statusCode = 201,
 	 * )
@@ -34,9 +37,11 @@ class CandidatController extends AbstractController
 	 * @Rest\Post(
 	 *     "/candidats"
 	 * )
+	 *
 	 * @Rest\View(
 	 *     StatusCode=201
 	 * )
+	 *
 	 * @ParamConverter(
 	 *     "candidat",
 	 *     converter="fos_rest.request_body")
@@ -48,6 +53,6 @@ class CandidatController extends AbstractController
 		$em->persist($candidat);
 		$em->flush();
 
-		return $candidat;
+		//return $this->redirectToRoute('app_candidat_show', ['max' => 10]);
 	}
 }
