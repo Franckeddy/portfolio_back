@@ -5,9 +5,30 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Hateoas\Configuration\Annotation as Hateoas;
+use JMS\Serializer\Annotation as Serializer;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CandidatRepository")
+ *
+ * @Hateoas\Relation(
+ *      "self",
+ *      href = @Hateoas\Route(
+ *          "app_candidat_show",
+ *          parameters = { "id" = "expr(object.getId())" },
+ *          absolute = true
+ *      )
+ * )
+ *
+ * @Hateoas\Relation(
+ *      "create",
+ *      href = @Hateoas\Route(
+ *          "app_candidat_create",
+ *          absolute = true
+ *      )
+ * )
  */
 class Candidat
 {
@@ -20,36 +41,59 @@ class Candidat
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+	 * @Assert\NotBlank(groups={"Create"})
+	 *
+	 * @Serializer\Since("1.0")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+	 * @Assert\NotBlank(groups={"Create"})
+	 *
+	 * @Serializer\Since("1.0")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+	 *
+	 * @Serializer\Since("1.0")
      */
     private $adress;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+	 *
+	 * @Serializer\Since("1.0")
      */
     private $town;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+	 *
+	 * @Serializer\Since("1.0")
      */
     private $zipcode;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+	 * @Assert\NotBlank(groups={"Create"})
+	 * @Assert\Email(
+	 *     message = "The email '{{ value }}' is not a valid email.",
+	 *     checkMX = true
+	 * )
+	 *
+	 * @Serializer\Since("1.0")
      */
     private $email;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+	 * @Assert\Date
+	 * @var string A "Y-m-d" formatted value
+	 *
+	 * @Serializer\Since("1.0")
      */
     private $date_of_birth;
 
@@ -72,6 +116,13 @@ class Candidat
      * @ORM\ManyToMany(targetEntity="App\Entity\Company", mappedBy="candidat")
      */
     private $companies;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+	 *
+	 * @Serializer\Since("2.0")
+     */
+    private $short_description;
 
     public function __construct()
     {
@@ -278,6 +329,18 @@ class Candidat
             $this->companies->removeElement($company);
             $company->removeCandidat($this);
         }
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->short_description;
+    }
+
+    public function setShortDescription(?string $short_description): self
+    {
+        $this->short_description = $short_description;
 
         return $this;
     }
