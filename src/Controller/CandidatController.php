@@ -4,11 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Candidat;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\Controller\Annotations\RequestParam;
-use FOS\RestBundle\Request\ParamFetcherInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class CandidatController extends AbstractController
 {
@@ -23,14 +23,9 @@ class CandidatController extends AbstractController
 	 *     statusCode = 201,
 	 * )
 	 */
-	public function showAction()
+	public function showAction(Candidat $candidat)
 	{
-		$candidat = new Candidat();
-		$candidat->setFirstname('Toto');
-		$candidat->setTown('Paris');
-
 		return $candidat;
-
 	}
 
 	/**
@@ -44,15 +39,23 @@ class CandidatController extends AbstractController
 	 *
 	 * @ParamConverter(
 	 *     "candidat",
-	 *     converter="fos_rest.request_body")
+	 *     converter="fos_rest.request_body",
+	 *     options={"validator"={ "groups"="Create"}
+	 *	 }
+	 * )
 	 */
-	public function createAction(Candidat $candidat)
+	public function createAction(Candidat $candidat ,ConstraintViolationList $violations)
 	{
-		$em = $this->getDoctrine()->getManager();
+		if (count($violations) > 0) {
+			return $this->render('candidat/validation.html.twig', [
+				'errors' => $violations,
+			]);
+		}
 
+		$em = $this->getDoctrine()->getManager();
 		$em->persist($candidat);
 		$em->flush();
 
-		//return $this->redirectToRoute('app_candidat_show', ['max' => 10]);
+		return new Response('The Candidat is valid! Yes!');
 	}
 }

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FormationRepository")
@@ -25,11 +26,15 @@ class Formation
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date
+	 * @var string A "Y-m-d" formatted value
      */
     private $start_date;
 
     /**
      * @ORM\Column(type="date")
+	 * @Assert\Date
+	 * @var string A "Y-m-d" formatted value
      */
     private $end_date;
 
