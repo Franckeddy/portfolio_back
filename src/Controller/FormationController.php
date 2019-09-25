@@ -31,7 +31,12 @@ class FormationController extends AbstractController
 	 * @Rest\Post(
 	 *     "/formations"
 	 * )
-	 *
+	 * @Rest\Put(
+	 *     "/formations"
+	 * )
+	 * @Rest\Patch(
+	 *     "/formations"
+	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
 	 * )
@@ -59,6 +64,4 @@ class FormationController extends AbstractController
 	}
 
 	//	TODO DELETE
-
-	//	TODO PUT
 }

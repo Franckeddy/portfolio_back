@@ -31,7 +31,12 @@ class LangueController extends AbstractController
 	 * @Rest\Post(
 	 *     "/langues"
 	 * )
-	 *
+	 * @Rest\Put(
+	 *     "/langues"
+	 * )
+	 * @Rest\Patch(
+	 *     "/langues"
+	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
 	 * )
@@ -59,6 +64,4 @@ class LangueController extends AbstractController
 	}
 
 	//	TODO DELETE
-
-	//	TODO PUT
 }

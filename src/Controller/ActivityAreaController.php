@@ -31,7 +31,12 @@ class ActivityAreaController extends AbstractController
 	 * @Rest\Post(
 	 *     "/activities"
 	 * )
-	 *
+	 * @Rest\Put(
+	 *     "/activities"
+	 * )
+	 * @Rest\Patch(
+	 *     "/activities"
+	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
 	 * )
@@ -60,5 +65,4 @@ class ActivityAreaController extends AbstractController
 
 	//	TODO DELETE
 
-	//	TODO PUT
 }

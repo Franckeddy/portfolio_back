@@ -33,7 +33,12 @@ class LicenseController extends AbstractController
 	 * @Rest\Post(
 	 *     "/licenses"
 	 * )
-	 *
+	 * @Rest\Put(
+	 *     "/licenses"
+	 * )
+	 * @Rest\Patch(
+	 *     "/licenses"
+	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
 	 * )
@@ -61,6 +66,4 @@ class LicenseController extends AbstractController
 	}
 
 	//	TODO DELETE
-
-	//	TODO PUT
 }

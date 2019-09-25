@@ -31,7 +31,12 @@ class SchoolController extends AbstractController
 	 * @Rest\Post(
 	 *     "/schools"
 	 * )
-	 *
+	 * @Rest\Put(
+	 *     "/schools"
+	 * )
+	 * @Rest\Patch(
+	 *     "/schools"
+	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
 	 * )
@@ -59,6 +64,4 @@ class SchoolController extends AbstractController
 	}
 
 	//	TODO DELETE
-
-	//	TODO PUT
 }

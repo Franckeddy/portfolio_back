@@ -31,11 +31,12 @@ class CandidatController extends AbstractController
 	 * @Rest\Post(
 	 *     "/candidats"
 	 * )
-	 *
-	 * @Rest\View(
-	 *     StatusCode=201
+	 * @Rest\Put(
+	 *     "/candidats"
 	 * )
-	 *
+	 * @Rest\Patch(
+	 *     "/candidats"
+	 * )
 	 * @ParamConverter(
 	 *     "candidat",
 	 *     converter="fos_rest.request_body",
@@ -60,5 +61,4 @@ class CandidatController extends AbstractController
 
 	//	TODO DELETE
 
-	//	TODO PUT
 }

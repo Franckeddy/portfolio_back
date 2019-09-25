@@ -31,7 +31,12 @@ class DiplomeController extends AbstractController
 	 * @Rest\Post(
 	 *     "/diplomes"
 	 * )
-	 *
+	 * @Rest\Put(
+	 *     "/diplomes"
+	 * )
+	 * @Rest\Patch(
+	 *     "/diplomes"
+	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
 	 * )
@@ -59,6 +64,4 @@ class DiplomeController extends AbstractController
 	}
 
 	//	TODO DELETE
-
-	//	TODO PUT
 }

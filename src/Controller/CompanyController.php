@@ -31,7 +31,12 @@ class CompanyController extends AbstractController
 	 * @Rest\Post(
 	 *     "/companies"
 	 * )
-	 *
+	 * @Rest\Put(
+	 *     "/companies"
+	 * )
+	 * @Rest\Patch(
+	 *     "/companies"
+	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
 	 * )
@@ -60,5 +65,4 @@ class CompanyController extends AbstractController
 
 	//	TODO DELETE
 
-	//	TODO PUT
 }
