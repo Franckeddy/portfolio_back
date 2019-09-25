@@ -70,7 +70,7 @@ class DiplomeController extends AbstractController
  	*/
 	public function removeDiplomeAction(Request $request)
 	{
-		$em = $this->get('doctrine.orm.entity_manager');
+		$em = $this->getDoctrine()->getManager();
 		$diplome = $em->getRepository('Diplome')
 			->find($request->get('id'));
 

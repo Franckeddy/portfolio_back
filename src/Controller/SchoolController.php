@@ -70,7 +70,7 @@ class SchoolController extends AbstractController
 	 */
 	public function removeSchoolAction(Request $request)
 	{
-		$em = $this->get('doctrine.orm.entity_manager');
+		$em = $this->getDoctrine()->getManager();
 		$school = $em->getRepository('App:School')
 			->find($request->get('id'));
 

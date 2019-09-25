@@ -70,7 +70,7 @@ class CompanyController extends AbstractController
 	 */
 	public function removeCompanyAction(Request $request)
 	{
-		$em = $this->get('doctrine.orm.entity_manager');
+		$em = $this->getDoctrine()->getManager();
 		$company = $em->getRepository('App:Company')
 			->find($request->get('id'));
 

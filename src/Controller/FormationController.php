@@ -70,7 +70,7 @@ class FormationController extends AbstractController
 	 */
 	public function removeFormationAction(Request $request)
 	{
-		$em = $this->get('doctrine.orm.entity_manager');
+		$em = $this->getDoctrine()->getManager();
 		$formation = $em->getRepository('App:Formation')
 			->find($request->get('id'));
 

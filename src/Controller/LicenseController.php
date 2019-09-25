@@ -72,7 +72,7 @@ class LicenseController extends AbstractController
 	 */
 	public function removeLicenseAction(Request $request)
 	{
-		$em = $this->get('doctrine.orm.entity_manager');
+		$em = $this->getDoctrine()->getManager();
 		$license = $em->getRepository('App:License')
 			->find($request->get('id'));
 
