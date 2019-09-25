@@ -52,7 +52,7 @@ class ActivityAreaController extends AbstractController
 	public function createAction(ActivityArea $activity ,ConstraintViolationList $violations)
 	{
 		if (count($violations) > 0) {
-			return $this->render('activity/validation.html.twig', [
+			return $this->render('activity_area/validation.html.twig', [
 				'errors' => $violations,
 			]);
 		}
