@@ -2,19 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\Candidat;
+use App\Entity\ActivityArea;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Response;
 
-class CandidatController extends AbstractController
+class ActivityAreaController extends AbstractController
 {
 	/**
 	 * @Rest\Get(
-	 *     path = "/candidats/{id}",
-	 *     name = "app_candidat_show",
+	 *     path = "/activities/{id}",
+	 *     name = "app_activity_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
 	 *
@@ -22,14 +22,14 @@ class CandidatController extends AbstractController
 	 *     statusCode = 201,
 	 * )
 	 */
-	public function showAction(Candidat $candidat)
+	public function showAction(ActivityArea $activity)
 	{
-		return $candidat;
+		return $activity;
 	}
 
 	/**
 	 * @Rest\Post(
-	 *     "/candidats"
+	 *     "/activities"
 	 * )
 	 *
 	 * @Rest\View(
@@ -37,25 +37,25 @@ class CandidatController extends AbstractController
 	 * )
 	 *
 	 * @ParamConverter(
-	 *     "candidat",
+	 *     "activity",
 	 *     converter="fos_rest.request_body",
 	 *     options={"validator"={ "groups"="Create"}
 	 *	 }
 	 * )
 	 */
-	public function createAction(Candidat $candidat ,ConstraintViolationList $violations)
+	public function createAction(ActivityArea $activity ,ConstraintViolationList $violations)
 	{
 		if (count($violations) > 0) {
-			return $this->render('candidat/validation.html.twig', [
+			return $this->render('activity/validation.html.twig', [
 				'errors' => $violations,
 			]);
 		}
 
 		$em = $this->getDoctrine()->getManager();
-		$em->persist($candidat);
+		$em->persist($activity);
 		$em->flush();
 
-		return new Response('The Candidat is valid! Yes!');
+		return new Response('Your activity is valid! Yes!');
 	}
 
 	//	TODO DELETE

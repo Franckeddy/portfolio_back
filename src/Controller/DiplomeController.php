@@ -2,19 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\Candidat;
+use App\Entity\Diplome;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\ConstraintViolationList;
 
-class CandidatController extends AbstractController
+class DiplomeController extends AbstractController
 {
 	/**
 	 * @Rest\Get(
-	 *     path = "/candidats/{id}",
-	 *     name = "app_candidat_show",
+	 *     path = "/diplomes/{id}",
+	 *     name = "app_diplome_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
 	 *
@@ -22,14 +22,14 @@ class CandidatController extends AbstractController
 	 *     statusCode = 201,
 	 * )
 	 */
-	public function showAction(Candidat $candidat)
+	public function showAction(Diplome $diplome)
 	{
-		return $candidat;
+		return $diplome;
 	}
 
 	/**
 	 * @Rest\Post(
-	 *     "/candidats"
+	 *     "/diplomes"
 	 * )
 	 *
 	 * @Rest\View(
@@ -37,25 +37,25 @@ class CandidatController extends AbstractController
 	 * )
 	 *
 	 * @ParamConverter(
-	 *     "candidat",
+	 *     "diplome",
 	 *     converter="fos_rest.request_body",
 	 *     options={"validator"={ "groups"="Create"}
 	 *	 }
 	 * )
 	 */
-	public function createAction(Candidat $candidat ,ConstraintViolationList $violations)
+	public function createAction(Diplome $diplome ,ConstraintViolationList $violations)
 	{
 		if (count($violations) > 0) {
-			return $this->render('candidat/validation.html.twig', [
+			return $this->render('diplome/validation.html.twig', [
 				'errors' => $violations,
 			]);
 		}
 
 		$em = $this->getDoctrine()->getManager();
-		$em->persist($candidat);
+		$em->persist($diplome);
 		$em->flush();
 
-		return new Response('The Candidat is valid! Yes!');
+		return new Response('The diplome is valid! Yes!');
 	}
 
 	//	TODO DELETE

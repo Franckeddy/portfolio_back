@@ -2,19 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\Candidat;
+use App\Entity\Langue;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\ConstraintViolationList;
 
-class CandidatController extends AbstractController
+class LangueController extends AbstractController
 {
 	/**
 	 * @Rest\Get(
-	 *     path = "/candidats/{id}",
-	 *     name = "app_candidat_show",
+	 *     path = "/langues/{id}",
+	 *     name = "app_langue_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
 	 *
@@ -22,14 +22,14 @@ class CandidatController extends AbstractController
 	 *     statusCode = 201,
 	 * )
 	 */
-	public function showAction(Candidat $candidat)
+	public function showAction(Langue $langue)
 	{
-		return $candidat;
+		return $langue;
 	}
 
 	/**
 	 * @Rest\Post(
-	 *     "/candidats"
+	 *     "/langues"
 	 * )
 	 *
 	 * @Rest\View(
@@ -37,25 +37,25 @@ class CandidatController extends AbstractController
 	 * )
 	 *
 	 * @ParamConverter(
-	 *     "candidat",
+	 *     "langue",
 	 *     converter="fos_rest.request_body",
 	 *     options={"validator"={ "groups"="Create"}
 	 *	 }
 	 * )
 	 */
-	public function createAction(Candidat $candidat ,ConstraintViolationList $violations)
+	public function createAction(Langue $langue ,ConstraintViolationList $violations)
 	{
 		if (count($violations) > 0) {
-			return $this->render('candidat/validation.html.twig', [
+			return $this->render('langue/validation.html.twig', [
 				'errors' => $violations,
 			]);
 		}
 
 		$em = $this->getDoctrine()->getManager();
-		$em->persist($candidat);
+		$em->persist($langue);
 		$em->flush();
 
-		return new Response('The Candidat is valid! Yes!');
+		return new Response('The langue is valid! Yes!');
 	}
 
 	//	TODO DELETE
