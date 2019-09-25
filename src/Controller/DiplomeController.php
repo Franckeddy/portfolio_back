@@ -6,6 +6,7 @@ use App\Entity\Diplome;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
 
@@ -63,5 +64,20 @@ class DiplomeController extends AbstractController
 		return new Response('The diplome is valid! Yes!');
 	}
 
-	//	TODO DELETE
+	/**
+ 	* @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+ 	* @Rest\Delete("/diplomes/{id}")
+ 	*/
+	public function removeDiplomeAction(Request $request)
+	{
+		$em = $this->get('doctrine.orm.entity_manager');
+		$diplome = $em->getRepository('Diplome')
+			->find($request->get('id'));
+
+		if ($diplome) {
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($diplome);
+			$em->flush();
+		}
+	}
 }

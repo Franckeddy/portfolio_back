@@ -6,6 +6,7 @@ use App\Entity\ActivityArea;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -63,6 +64,20 @@ class ActivityAreaController extends AbstractController
 		return new Response('Your activity is valid! Yes!');
 	}
 
-	//	TODO DELETE
+	/**
+	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+	 * @Rest\Delete("/activities/{id}")
+	 */
+	public function removeActivityAction(Request $request)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$activity = $em->getRepository('App:ActivityArea')
+			->find($request->get('id'));
 
+		if ($activity) {
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($activity);
+			$em->flush();
+		}
+	}
 }
