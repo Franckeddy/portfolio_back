@@ -20,12 +20,12 @@ class License
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
 	 * @Assert\Date
 	 * @var string A "Y-m-d" formatted value
      */

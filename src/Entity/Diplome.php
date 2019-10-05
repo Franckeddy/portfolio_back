@@ -30,7 +30,7 @@ class Diplome
     private $level;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
 	 * @Assert\Date
 	 * @var string A "Y-m-d" formatted value
      */
