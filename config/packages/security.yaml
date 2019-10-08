@@ -20,10 +20,6 @@ security:
                 # where to redirect after logout
                 # target: app_any_route
 
-        api_doc:
-            pattern: ^/api/doc
-            security: false
-
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
