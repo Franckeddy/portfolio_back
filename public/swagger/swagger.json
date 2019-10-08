@@ -1,0 +1,119 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Portfolio",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:82/api/doc",
+            "description": "Mon Api pour portfolio"
+        }
+    ],
+    "paths": {
+        "/candidats/{id}": {
+            "get": {
+                "operationId": "App\\Controller\\CandidatController::showAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Candidat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Candidat"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Candidat": {
+                "description": "Notre Candidat",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "firstname": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "adress": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "town": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "zipcode": {
+                        "type": "integer",
+                        "nullable": "true"
+                    },
+                    "email": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "date_of_birth": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "CandidatSingle": {
+                "description": "Notre Candidat",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Candidat"
+                    }
+                ]
+            }
+        },
+        "responses": {
+            "NotFound": {
+                "description": "la resource n'existe pas",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "le candidat n'éxiste pas"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "id": {
+                "name": "id",
+                "in": "path",
+                "description": "ID du candidat",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
