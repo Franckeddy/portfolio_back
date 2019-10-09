@@ -6,11 +6,36 @@
     },
     "servers": [
         {
-            "url": "http://localhost:82/api/doc",
+            "url": "http://http://localhost:82/swagger/index.html",
             "description": "Mon Api pour portfolio"
         }
     ],
     "paths": {
+        "/activities/{id}": {
+            "get": {
+                "operationId": "App\\Controller\\ActivityAreaController::showAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Acitivé",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActivityArea"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                }
+            }
+        },
         "/candidats/{id}": {
             "get": {
                 "operationId": "App\\Controller\\CandidatController::showAction",
@@ -35,10 +60,173 @@
                     }
                 }
             }
+        },
+        "/companies/{id}": {
+            "get": {
+                "operationId": "App\\Controller\\CompanyController::showAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Entreprise",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                }
+            }
+        },
+        "/diplomes/{id}": {
+            "get": {
+                "operationId": "App\\Controller\\DiplomeController::showAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Diplome",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Diplome"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                }
+            }
+        },
+        "/formations/{id}": {
+            "get": {
+                "operationId": "App\\Controller\\FormationController::showAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Formation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Formation"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                }
+            }
+        },
+        "/langues/{id}": {
+            "get": {
+                "operationId": "App\\Controller\\LangueController::showAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Langue",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Langue"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                }
+            }
+        },
+        "/licenses/{id}": {
+            "get": {
+                "operationId": "App\\Controller\\LicenseController::showAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre License",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/License"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                }
+            }
+        },
+        "/schools/{id}": {
+            "get": {
+                "operationId": "App\\Controller\\SchoolController::showAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Ecole",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/School"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
+            "ActivityArea": {
+                "description": "Notre Activité",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
             "Candidat": {
                 "description": "Notre Candidat",
                 "properties": {
@@ -77,13 +265,131 @@
                 },
                 "type": "object"
             },
-            "CandidatSingle": {
-                "description": "Notre Candidat",
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Candidat"
+            "Company": {
+                "description": "Notre Entreprise",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": "true"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": "true"
                     }
-                ]
+                },
+                "type": "object"
+            },
+            "Diplome": {
+                "description": "Notre Diplome",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "level": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "date_obtention": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "Formation": {
+                "description": "Notre Formation",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": "true"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "Langue": {
+                "description": "Notre Langue",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "level": {
+                        "type": "string",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "License": {
+                "description": "Notre License",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "date_obtention": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "School": {
+                "description": "Notre Ecole",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": "true"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
             }
         },
         "responses": {
