@@ -23,7 +23,7 @@ use OpenApi\Annotations as OA;
  *          )
  * )
  */
-class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+class AbstractController extends AbstractController
 {
 
 }
