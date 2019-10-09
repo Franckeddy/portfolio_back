@@ -6,14 +6,14 @@ use App\Entity\Candidat;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
+use App\Controller\AbstractBisController;
 
-class CandidatController extends AbstractController
+class CandidatController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
@@ -92,21 +92,6 @@ class CandidatController extends AbstractController
 	}
 
 	/**
-	 * @OA\Get(
-	 * 		path="/candidats",
-	 * 		@OA\Parameter(
-	 * 				name"limit",
-	 * 				in="query",
-	 * 				description="Le nombre de candidats à récuperer",
-	 * 				required=false,
-	 * 				@OA\schema(type="integer"),
-	 * 		),
-	 * 		@OA\Response(
-	 * 				response="200",
-	 * 				description="Nos Candidats",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Candidats"),
-	 * 		)
-	 * )
 	 * @Rest\Get("/candidats", name="app_candidat_list")
 	 * @Rest\QueryParam(
 	 *     name="keyword",
@@ -140,4 +125,20 @@ class CandidatController extends AbstractController
 
 		return new JsonResponse($pager);
 	}
+
+	//  * @OA\Get(
+	//  * 		path="/candidats",
+	//  * 		@OA\Parameter(
+	//  * 				name"limit",
+	//  * 				in="query",
+	//  * 				description="Le nombre de candidats à récuperer",
+	//  * 				required=false,
+	//  * 				@OA\schema(type="integer"),
+	//  * 		),
+	//  * 		@OA\Response(
+	//  * 				response="200",
+	//  * 				description="Nos Candidats",
+	//  * 				@OA\JsonContent(ref="#/components/schemas/Candidats"),
+	//  * 		)
+	//  * )
 }

@@ -5,14 +5,25 @@ namespace App\Controller;
 use App\Entity\ActivityArea;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Controller\AbstractBisController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Response;
+use OpenApi\Annotations as OA;
 
-class ActivityAreaController extends AbstractController
+class ActivityAreaController extends AbstractBisController
 {
 	/**
+	 * @OA\Get(
+	 * 		path="/activities/{id}",
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Acitivé",
+	 * 				@OA\JsonContent(ref="#/components/schemas/ActivityArea")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * )
 	 * @Rest\Get(
 	 *     path = "/activities/{id}",
 	 *     name = "app_activity_show",

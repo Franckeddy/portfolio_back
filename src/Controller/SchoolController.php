@@ -5,14 +5,25 @@ namespace App\Controller;
 use App\Entity\School;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
-
-class SchoolController extends AbstractController
+use OpenApi\Annotations as OA;
+use App\Controller\AbstractBisController;
+class SchoolController extends AbstractBisController
 {
 	/**
+	 * @OA\Get(
+	 * 		path="/schools/{id}",
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Ecole",
+	 * 				@OA\JsonContent(ref="#/components/schemas/School")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * )
+	 * 
 	 * @Rest\Get(
 	 *     path = "/schools/{id}",
 	 *     name = "app_school_show",

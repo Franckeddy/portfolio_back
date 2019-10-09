@@ -5,14 +5,26 @@ namespace App\Controller;
 use App\Entity\Formation;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use OpenApi\Annotations as OA;
+use App\Controller\AbstractBisController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
 
-class FormationController extends AbstractController
+class FormationController extends AbstractBisController
 {
 	/**
+	 * @OA\Get(
+	 * 		path="/formations/{id}",
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Formation",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Formation")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * )
+	 * 
 	 * @Rest\Get(
 	 *     path = "/formations/{id}",
 	 *     name = "app_formation_show",

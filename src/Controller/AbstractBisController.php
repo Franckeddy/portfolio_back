@@ -14,7 +14,6 @@ use OpenApi\Annotations as OA;
  * 			@OA\Schema(type="integer")
  * )
  * 
- * 
  * @OA\Response(
  *          response="NotFound",
  *          description="la resource n'existe pas",
@@ -23,7 +22,7 @@ use OpenApi\Annotations as OA;
  *          )
  * )
  */
-class AbstractController extends AbstractController
+class AbstractBisController extends AbstractController
 {
 
 }

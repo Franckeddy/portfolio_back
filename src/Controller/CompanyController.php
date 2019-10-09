@@ -5,14 +5,25 @@ namespace App\Controller;
 use App\Entity\Company;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
-
-class CompanyController extends AbstractController
+use OpenApi\Annotations as OA;
+use App\Controller\AbstractBisController;
+class CompanyController extends AbstractBisController
 {
 	/**
+	 * @OA\Get(
+	 * 		path="/companies/{id}",
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Entreprise",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Company")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * )
+	 * 
 	 * @Rest\Get(
 	 *     path = "/companies/{id}",
 	 *     name = "app_company_show",

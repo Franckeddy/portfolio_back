@@ -5,14 +5,25 @@ namespace App\Controller;
 use App\Entity\Diplome;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
-
-class DiplomeController extends AbstractController
+use OpenApi\Annotations as OA;
+use App\Controller\AbstractBisController;
+class DiplomeController extends AbstractBisController
 {
 	/**
+	 * @OA\Get(
+	 * 		path="/diplomes/{id}",
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Diplome",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Diplome")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * )
+	 * 
 	 * @Rest\Get(
 	 *     path = "/diplomes/{id}",
 	 *     name = "app_diplome_show",
