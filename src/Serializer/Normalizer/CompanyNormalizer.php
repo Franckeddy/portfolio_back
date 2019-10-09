@@ -9,19 +9,15 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
- *      schema="Candidat",
- *      description="Notre Candidat",
+ *      schema="Company",
+ *      description="Notre Entreprise",
  *      @OA\Property(type="integer", property="id"),
- *      @OA\Property(type="string", property="firstname", nullable="true"),
- *      @OA\Property(type="string", property="lastname", nullable="true"),
- *      @OA\Property(type="string", property="adress", nullable="true"),
- *      @OA\Property(type="string", property="town", nullable="true"),
- *      @OA\Property(type="integer", property="zipcode", nullable="true"),
- *      @OA\Property(type="string", property="email", nullable="true"),
- *      @OA\Property(type="string", format="date-time", property="date_of_birth", nullable="true"),
+ *      @OA\Property(type="string", property="name", nullable="true"),
+ *      @OA\Property(type="string", format="date-time", property="start_date", nullable="true"),
+ *      @OA\Property(type="string", format="date-time", property="end_date", nullable="true"),
  * )
  */
-class CandidatNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
+class CompanyNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
 {
     private $normalizer;
 
@@ -48,9 +44,4 @@ class CandidatNormalizer implements NormalizerInterface, CacheableSupportsMethod
     {
         return true;
     }
-//  * @OA\Schema(
-//  *      schema="CandidatSingle",
-//  *      description="Notre Candidat",
-//  *      allOf={@OA\Schema(ref="#/components/schemas/Candidat")}
-//  * )
 }
