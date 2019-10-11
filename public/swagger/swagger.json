@@ -1117,8 +1117,8 @@
                 },
                 "type": "object"
             },
-            "Candidat": {
-                "description": "Notre Candidat en détail",
+            "CandidatQuickView": {
+                "description": "Notre Candidat en résumé",
                 "properties": {
                     "id": {
                         "type": "integer"
@@ -1131,6 +1131,16 @@
                         "type": "string",
                         "nullable": "true"
                     },
+                    "short_description": {
+                        "type": "string",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "Candidat": {
+                "description": "Notre Candidat en détail",
+                "properties": {
                     "adress": {
                         "type": "string",
                         "nullable": "true"
@@ -1150,10 +1160,6 @@
                     "date_of_birth": {
                         "type": "string",
                         "format": "date-time",
-                        "nullable": "true"
-                    },
-                    "short_description": {
-                        "type": "string",
                         "nullable": "true"
                     },
                     "langues": {
@@ -1189,28 +1195,12 @@
                         }
                     }
                 },
-                "type": "object"
-            },
-            "CandidatQuickView": {
-                "description": "Notre Candidat en résumé",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "firstname": {
-                        "type": "string",
-                        "nullable": "true"
-                    },
-                    "lastname": {
-                        "type": "string",
-                        "nullable": "true"
-                    },
-                    "short_description": {
-                        "type": "string",
-                        "nullable": "true"
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CandidatQuickView"
                     }
-                },
-                "type": "object"
+                ]
             },
             "Company": {
                 "description": "Notre Entreprise",
@@ -1233,7 +1223,6 @@
                         "nullable": "true"
                     },
                     "activityAreas": {
-                        "type": "array",
                         "items": {
                             "type": "array",
                             "items": {
@@ -1287,7 +1276,6 @@
                         "nullable": "true"
                     },
                     "diplomes": {
-                        "type": "array",
                         "items": {
                             "type": "array",
                             "items": {
@@ -1357,7 +1345,6 @@
                         "nullable": "true"
                     },
                     "formations": {
-                        "type": "array",
                         "items": {
                             "type": "array",
                             "items": {

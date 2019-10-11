@@ -9,29 +9,26 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
- *      schema="Candidat",
- *      description="Notre Candidat en détail",
- *      @OA\Property(type="integer", property="id"),
- *      @OA\Property(type="string", property="firstname", nullable="true"),
- *      @OA\Property(type="string", property="lastname", nullable="true"),
- *      @OA\Property(type="string", property="adress", nullable="true"),
- *      @OA\Property(type="string", property="town", nullable="true"),
- *      @OA\Property(type="integer", property="zipcode", nullable="true"),
- *      @OA\Property(type="string", property="email", nullable="true"),
- *      @OA\Property(type="string", format="date-time", property="date_of_birth", nullable="true"),
- *      @OA\Property(type="string", property="short_description", nullable="true"),
- *      @OA\Property(property="langues", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Langue"))),
- *      @OA\Property(property="licenses", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Permis"))),
- *      @OA\Property(property="schools", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Ecole"))),
- *      @OA\Property(property="companies", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Company"))),
- * )
- * @OA\Schema(
  *      schema="CandidatQuickView",
  *      description="Notre Candidat en résumé",
  *      @OA\Property(type="integer", property="id"),
  *      @OA\Property(type="string", property="firstname", nullable="true"),
  *      @OA\Property(type="string", property="lastname", nullable="true"),
  *      @OA\Property(type="string", property="short_description", nullable="true"),
+ * )
+ * @OA\Schema(
+ *      schema="Candidat",
+ *      description="Notre Candidat en détail",
+ *      allOf={@OA\Schema(ref="#/components/schemas/CandidatQuickView")},
+ *      @OA\Property(type="string", property="adress", nullable="true"),
+ *      @OA\Property(type="string", property="town", nullable="true"),
+ *      @OA\Property(type="integer", property="zipcode", nullable="true"),
+ *      @OA\Property(type="string", property="email", nullable="true"),
+ *      @OA\Property(type="string", format="date-time", property="date_of_birth", nullable="true"),
+ *      @OA\Property(property="langues", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Langue"))),
+ *      @OA\Property(property="licenses", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Permis"))),
+ *      @OA\Property(property="schools", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Ecole"))),
+ *      @OA\Property(property="companies", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Company"))),
  * )
  */
 class CandidatNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
