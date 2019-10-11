@@ -16,13 +16,14 @@ class ActivityAreaController extends AbstractBisController
 	/**
 	 * @OA\Get(
 	 * 		path="/activities/{id}",
+	 * 		tags={"Secteur d'activité"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
 	 * 				response="200",
-	 * 				description="Notre Acitivé",
-	 * 				@OA\JsonContent(ref="#/components/schemas/ActivityArea")
+	 * 				description="Notre Secteur d'activité",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Secteur d'activité")
 	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * @Rest\Get(
 	 *     path = "/activities/{id}",
@@ -40,12 +41,50 @@ class ActivityAreaController extends AbstractBisController
 	}
 
 	/**
+	 * @OA\Post(
+	 * 		path="/activities/{id}",
+	 * 		tags={"Secteur d'activité"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Secteur d'activité",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Secteur d'activité")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Post(
 	 *     "/activities"
 	 * )
+	 * 
+	 * @OA\Put(
+	 * 		path="/activities/{id}",
+	 * 		tags={"Secteur d'activité"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Secteur d'activité",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Secteur d'activité")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Put(
 	 *     "/activities"
 	 * )
+	 * 
+	 * @OA\Patch(
+	 * 		path="/activities/{id}",
+	 * 		tags={"Secteur d'activité"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Secteur d'activité",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Secteur d'activité")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Patch(
 	 *     "/activities"
 	 * )
@@ -77,6 +116,19 @@ class ActivityAreaController extends AbstractBisController
 
 	/**
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+	 * 
+	 * @OA\Delete(
+	 * 		path="/activities/{id}",
+	 * 		tags={"Secteur d'activité"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Secteur d'activité",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Secteur d'activité")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Delete("/activities/{id}")
 	 */
 	public function removeActivityAction(Request $request)

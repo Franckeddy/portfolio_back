@@ -15,13 +15,14 @@ class CompanyController extends AbstractBisController
 	/**
 	 * @OA\Get(
 	 * 		path="/companies/{id}",
+	 * 		tags={"Entreprise"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Entreprise",
 	 * 				@OA\JsonContent(ref="#/components/schemas/Company")
 	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
 	 * @Rest\Get(
@@ -40,12 +41,50 @@ class CompanyController extends AbstractBisController
 	}
 
 	/**
+	 * @OA\Post(
+	 * 		path="/companies/{id}",
+	 * 		tags={"Entreprise"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Company",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Company")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Post(
 	 *     "/companies"
 	 * )
+	 * 
+	 * @OA\Put(
+	 * 		path="/companies/{id}",
+	 * 		tags={"Entreprise"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Company",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Company")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Put(
 	 *     "/companies"
 	 * )
+	 * 
+	 * @OA\Patch(
+	 * 		path="/companies/{id}",
+	 * 		tags={"Entreprise"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Company",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Company")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Patch(
 	 *     "/companies"
 	 * )
@@ -77,6 +116,19 @@ class CompanyController extends AbstractBisController
 
 	/**
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+	 * 
+	 * @OA\Delete(
+	 * 		path="/companies/{id}",
+	 * 		tags={"Entreprise"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Company",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Company")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Delete("/companies/{id}")
 	 */
 	public function removeCompanyAction(Request $request)

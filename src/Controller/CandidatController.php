@@ -18,13 +18,14 @@ class CandidatController extends AbstractBisController
 	/**
 	 * @OA\Get(
 	 * 		path="/candidats/{id}",
+	 * 		tags={"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Candidat",
 	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
 	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound"),
 	 * )
 	 * 
 	 * @Rest\Get(
@@ -43,12 +44,53 @@ class CandidatController extends AbstractBisController
 	}
 
 	/**
+	 * @OA\Post(
+	 * 		path="/candidats/{id}",
+	 * 		tags={"Candidat"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="201",
+	 * 				description="Notre Candidat",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound"),
+	 * 		@OA\Response(response="409", ref="#/components/responses/409 - CONFLICT")
+	 * )
+	 * 
 	 * @Rest\Post(
 	 *     "/candidats"
 	 * )
+	 * 
+	 * @OA\Put(
+	 * 		path="/candidats/{id}",
+	 * 		tags={"Candidat"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Candidat",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
+	 * 		),
+	 * 		@OA\Response(response="204", ref="#/components/responses/204 -  NO CONTENT"),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Put(
 	 *     "/candidats"
 	 * )
+	 * 
+	 * @OA\Patch(
+	 * 		path="/candidats/{id}",
+	 * 		tags={"Candidat"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Candidat",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
+	 * 		),
+	 * 		@OA\Response(response="204", ref="#/components/responses/204 -  NO CONTENT"),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Patch(
 	 *     "/candidats"
 	 * )
@@ -76,6 +118,19 @@ class CandidatController extends AbstractBisController
 
 	/**
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+	 * 
+	 * @OA\Delete(
+	 * 		path="/candidats/{id}",
+	 * 		tags={"Candidat"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Candidat",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Delete("/candidats/{id}")
 	 */
 	public function removeCandidatAction(Request $request)
@@ -92,6 +147,16 @@ class CandidatController extends AbstractBisController
 	}
 
 	/**
+	 * @OA\Get(
+	 * 		path="/candidats/",
+	 * 		tags={"Liste des Candidat"},
+	 * 		@OA\Parameter(ref="#/components/parameters/"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Liste de Candidat",
+	 * 				@OA\JsonContent(ref="#/components/schemas/CandidatQuickView")
+	 * 		),
+	 * )
 	 * @Rest\Get("/candidats", name="app_candidat_list")
 	 * @Rest\QueryParam(
 	 *     name="keyword",
@@ -125,20 +190,4 @@ class CandidatController extends AbstractBisController
 
 		return new JsonResponse($pager);
 	}
-
-	//  * @OA\Get(
-	//  * 		path="/candidats",
-	//  * 		@OA\Parameter(
-	//  * 				name"limit",
-	//  * 				in="query",
-	//  * 				description="Le nombre de candidats à récuperer",
-	//  * 				required=false,
-	//  * 				@OA\schema(type="integer"),
-	//  * 		),
-	//  * 		@OA\Response(
-	//  * 				response="200",
-	//  * 				description="Nos Candidats",
-	//  * 				@OA\JsonContent(ref="#/components/schemas/Candidats"),
-	//  * 		)
-	//  * )
 }

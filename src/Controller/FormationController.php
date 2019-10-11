@@ -16,13 +16,14 @@ class FormationController extends AbstractBisController
 	/**
 	 * @OA\Get(
 	 * 		path="/formations/{id}",
+	 * 		tags={"Formation"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Formation",
 	 * 				@OA\JsonContent(ref="#/components/schemas/Formation")
 	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
 	 * @Rest\Get(
@@ -41,12 +42,50 @@ class FormationController extends AbstractBisController
 	}
 
 	/**
+	 * @OA\Post(
+	 * 		path="/formations/{id}",
+	 * 		tags={"Formation"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Formation",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Formation")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Post(
 	 *     "/formations"
 	 * )
+	 * 
+	 * @OA\Put(
+	 * 		path="/formations/{id}",
+	 * 		tags={"Formation"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Formation",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Formation")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Put(
 	 *     "/formations"
 	 * )
+	 * 
+	 * @OA\Patch(
+	 * 		path="/formations/{id}",
+	 * 		tags={"Formation"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Formation",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Formation")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Patch(
 	 *     "/formations"
 	 * )
@@ -78,6 +117,19 @@ class FormationController extends AbstractBisController
 
 	/**
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+	 * 
+	 * @OA\Delete(
+	 * 		path="/formations/{id}",
+	 * 		tags={"Formation"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Formation",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Formation")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Delete("/formations/{id}")
 	 */
 	public function removeFormationAction(Request $request)

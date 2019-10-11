@@ -15,13 +15,14 @@ class DiplomeController extends AbstractBisController
 	/**
 	 * @OA\Get(
 	 * 		path="/diplomes/{id}",
+	 * 		tags={"Diplome"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Diplome",
 	 * 				@OA\JsonContent(ref="#/components/schemas/Diplome")
 	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
 	 * @Rest\Get(
@@ -40,11 +41,47 @@ class DiplomeController extends AbstractBisController
 	}
 
 	/**
+	 * @OA\Post(
+	 * 		path="/diplomes/{id}",
+	 * 		tags={"Diplome"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Diplome",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Diplome")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Post(
 	 *     "/diplomes"
 	 * )
+	 * 
+	 * @OA\Put(
+	 * 		path="/diplomes/{id}",
+	 * 		tags={"Diplome"},	 
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Diplome",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Diplome")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
 	 * @Rest\Put(
 	 *     "/diplomes"
+	 * )
+	 * 
+	 * @OA\Patch(
+	 * 		path="/diplomes/{id}",
+	 * 		tags={"Diplome"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Diplome",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Diplome")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * @Rest\Patch(
 	 *     "/diplomes"
@@ -76,9 +113,22 @@ class DiplomeController extends AbstractBisController
 	}
 
 	/**
- 	* @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
- 	* @Rest\Delete("/diplomes/{id}")
- 	*/
+ 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+	 * 
+	 * @OA\Delete(
+	 * 		path="/diplomes/{id}",
+	 * 		tags={"Diplome"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Diplome",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Diplome")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
+ 	 * @Rest\Delete("/diplomes/{id}")
+ 	 **/
 	public function removeDiplomeAction(Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();

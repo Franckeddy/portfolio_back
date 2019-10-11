@@ -18,13 +18,14 @@ class LicenseController extends AbstractBisController
 	/**
 	 * @OA\Get(
 	 * 		path="/licenses/{id}",
+	 * 		tags={"Permis"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
 	 * 				response="200",
-	 * 				description="Notre License",
-	 * 				@OA\JsonContent(ref="#/components/schemas/License")
+	 * 				description="Notre Permis",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Permis")
 	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
 	 * @Rest\Get(
@@ -43,12 +44,50 @@ class LicenseController extends AbstractBisController
 	}
 
 	/**
+	 * @OA\Post(
+	 * 		path="/licenses/{id}",
+	 * 		tags={"Permis"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Permis",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Permis")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Post(
 	 *     "/licenses"
 	 * )
+	 * 
+	 * @OA\Put(
+	 * 		path="/licenses/{id}",
+	 * 		tags={"Permis"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Permis",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Permis")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Put(
 	 *     "/licenses"
 	 * )
+	 * 
+	 * @OA\Patch(
+	 * 		path="/licenses/{id}",
+	 * 		tags={"Permis"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Permis",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Permis")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Patch(
 	 *     "/licenses"
 	 * )
@@ -80,6 +119,19 @@ class LicenseController extends AbstractBisController
 
 	/**
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+	 * 
+	 * @OA\Delete(
+	 * 		path="/licenses/{id}",
+	 * 		tags={"Permis"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Permis",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Permis")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Delete("/licenses/{id}")
 	 */
 	public function removeLicenseAction(Request $request)

@@ -15,13 +15,14 @@ class LangueController extends AbstractBisController
 	/**
 	 * @OA\Get(
 	 * 		path="/langues/{id}",
+	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Langue",
 	 * 				@OA\JsonContent(ref="#/components/schemas/Langue")
 	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
 	 * @Rest\Get(
@@ -40,12 +41,50 @@ class LangueController extends AbstractBisController
 	}
 
 	/**
+	 * @OA\Post(
+	 * 		path="/langues/{id}",
+	 * 		tags={"Langue"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Langue",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Langue")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Post(
 	 *     "/langues"
 	 * )
+	 * 
+	 * @OA\Put(
+	 * 		path="/langues/{id}",
+	 * 		tags={"Langue"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Langue",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Langue")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Put(
 	 *     "/langues"
 	 * )
+	 * 
+	 * @OA\Patch(
+	 * 		path="/langues/{id}",
+	 * 		tags={"Langue"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Langue",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Langue")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Patch(
 	 *     "/langues"
 	 * )
@@ -77,6 +116,19 @@ class LangueController extends AbstractBisController
 
 	/**
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+	 * 
+	 * @OA\Delete(
+	 * 		path="/langues/{id}",
+	 * 		tags={"Langue"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Langue",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Langue")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Delete("/langues/{id}")
 	 */
 	public function removeLangueAction(Request $request)

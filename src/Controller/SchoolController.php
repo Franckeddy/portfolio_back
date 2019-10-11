@@ -15,13 +15,15 @@ class SchoolController extends AbstractBisController
 	/**
 	 * @OA\Get(
 	 * 		path="/schools/{id}",
+	 * 		tags={"Ecole"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Ecole",
-	 * 				@OA\JsonContent(ref="#/components/schemas/School")
+	 * 				@OA\JsonContent(ref="#/components/schemas/Ecole")
 	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/NotFound")
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * 
 	 * )
 	 * 
 	 * @Rest\Get(
@@ -40,12 +42,50 @@ class SchoolController extends AbstractBisController
 	}
 
 	/**
+	 * @OA\Post(
+	 * 		path="/schools/{id}",
+	 * 		tags={"Ecole"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Ecole",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Ecole")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Post(
 	 *     "/schools"
 	 * )
+	 * 
+	 * @OA\Put(
+	 * 		path="/schools/{id}",
+	 * 		tags={"Ecole"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Ecole",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Ecole")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Put(
 	 *     "/schools"
 	 * )
+	 * 
+	 * @OA\Patch(
+	 * 		path="/schools/{id}",
+	 * 		tags={"Ecole"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Ecole",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Ecole")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Patch(
 	 *     "/schools"
 	 * )
@@ -77,6 +117,19 @@ class SchoolController extends AbstractBisController
 
 	/**
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+	 * 
+	 * @OA\Delete(
+	 * 		path="/schools/{id}",
+	 * 		tags={"Ecole"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Ecole",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Ecole")
+	 * 		),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
 	 * @Rest\Delete("/schools/{id}")
 	 */
 	public function removeSchoolAction(Request $request)
