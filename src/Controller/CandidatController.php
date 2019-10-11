@@ -48,6 +48,7 @@ class CandidatController extends AbstractBisController
 	 * 		path="/candidats/{id}",
 	 * 		tags={"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateCandidat"),
 	 * 		@OA\Response(
 	 * 				response="201",
 	 * 				description="Notre Candidat",

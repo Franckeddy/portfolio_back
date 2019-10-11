@@ -209,6 +209,9 @@
                         "$ref": "#/components/parameters/id"
                     }
                 ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateCandidat"
+                },
                 "responses": {
                     "201": {
                         "description": "Notre Candidat",
@@ -1494,6 +1497,16 @@
                 "required": true,
                 "schema": {
                     "type": "integer"
+                }
+            }
+        },
+        "requestBodies": {
+            "UpdateCandidat": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {}
+                    }
                 }
             }
         }
