@@ -9,12 +9,13 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
- *      schema="School",
+ *      schema="Ecole",
  *      description="Notre Ecole",
  *      @OA\Property(type="integer", property="id"),
  *      @OA\Property(type="string", property="name", nullable="true"),
  *      @OA\Property(type="string", format="date-time", property="start_date", nullable="true"),
  *      @OA\Property(type="string", format="date-time", property="end_date", nullable="true"),
+ *      @OA\Property(property="formations", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Formation"))),
  * )
  */
 class SchoolNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface

@@ -9,6 +9,7 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
+ *      @OA\Xml(name="Langue"),
  *      schema="Langue",
  *      description="Notre Langue",
  *      @OA\Property(type="integer", property="id"),

@@ -15,6 +15,7 @@ use OpenApi\Annotations as OA;
  *      @OA\Property(type="string", property="name", nullable="true"),
  *      @OA\Property(type="string", format="date-time", property="start_date", nullable="true"),
  *      @OA\Property(type="string", format="date-time", property="end_date", nullable="true"),
+ *      @OA\Property(property="diplomes", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Diplome"))),
  * )
  */
 class FormationNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface

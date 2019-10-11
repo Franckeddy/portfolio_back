@@ -9,8 +9,8 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
- *      schema="License",
- *      description="Notre License",
+ *      schema="Permis",
+ *      description="Notre Permis",
  *      @OA\Property(type="integer", property="id"),
  *      @OA\Property(type="string", property="name", nullable="true"),
  *      @OA\Property(type="string", format="date-time", property="date_obtention", nullable="true"),

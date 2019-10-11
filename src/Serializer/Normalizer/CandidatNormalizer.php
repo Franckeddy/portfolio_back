@@ -10,7 +10,7 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Schema(
  *      schema="Candidat",
- *      description="Notre Candidat",
+ *      description="Notre Candidat en détail",
  *      @OA\Property(type="integer", property="id"),
  *      @OA\Property(type="string", property="firstname", nullable="true"),
  *      @OA\Property(type="string", property="lastname", nullable="true"),
@@ -19,6 +19,19 @@ use OpenApi\Annotations as OA;
  *      @OA\Property(type="integer", property="zipcode", nullable="true"),
  *      @OA\Property(type="string", property="email", nullable="true"),
  *      @OA\Property(type="string", format="date-time", property="date_of_birth", nullable="true"),
+ *      @OA\Property(type="string", property="short_description", nullable="true"),
+ *      @OA\Property(property="langues", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Langue"))),
+ *      @OA\Property(property="licenses", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Permis"))),
+ *      @OA\Property(property="schools", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Ecole"))),
+ *      @OA\Property(property="companies", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Company"))),
+ * )
+ * @OA\Schema(
+ *      schema="CandidatQuickView",
+ *      description="Notre Candidat en résumé",
+ *      @OA\Property(type="integer", property="id"),
+ *      @OA\Property(type="string", property="firstname", nullable="true"),
+ *      @OA\Property(type="string", property="lastname", nullable="true"),
+ *      @OA\Property(type="string", property="short_description", nullable="true"),
  * )
  */
 class CandidatNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
@@ -48,9 +61,4 @@ class CandidatNormalizer implements NormalizerInterface, CacheableSupportsMethod
     {
         return true;
     }
-//  * @OA\Schema(
-//  *      schema="CandidatSingle",
-//  *      description="Notre Candidat",
-//  *      allOf={@OA\Schema(ref="#/components/schemas/Candidat")}
-//  * )
 }
