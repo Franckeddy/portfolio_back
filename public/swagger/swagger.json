@@ -13,6 +13,9 @@
     "paths": {
         "/activities/{id}": {
             "get": {
+                "tags": [
+                    "Secteur d'activité"
+                ],
                 "operationId": "App\\Controller\\ActivityAreaController::showAction",
                 "parameters": [
                     {
@@ -21,23 +24,130 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Notre Acitivé",
+                        "description": "Notre Secteur d'activité",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ActivityArea"
+                                    "$ref": "#/components/schemas/Secteur d'activité"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Secteur d'activité"
+                ],
+                "operationId": "App\\Controller\\ActivityAreaController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Secteur d'activité",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Secteur d'activité"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Secteur d'activité"
+                ],
+                "operationId": "App\\Controller\\ActivityAreaController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Secteur d'activité",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Secteur d'activité"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Secteur d'activité"
+                ],
+                "operationId": "App\\Controller\\ActivityAreaController::removeActivityAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Secteur d'activité",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Secteur d'activité"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Secteur d'activité"
+                ],
+                "operationId": "App\\Controller\\ActivityAreaController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Secteur d'activité",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Secteur d'activité"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
                     }
                 }
             }
         },
         "/candidats/{id}": {
             "get": {
+                "tags": [
+                    "Candidat"
+                ],
                 "operationId": "App\\Controller\\CandidatController::showAction",
                 "parameters": [
                     {
@@ -56,13 +166,154 @@
                         }
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Candidat"
+                ],
+                "operationId": "App\\Controller\\CandidatController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Candidat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Candidat"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/204 -  NO CONTENT"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Candidat"
+                ],
+                "operationId": "App\\Controller\\CandidatController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Notre Candidat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Candidat"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/409 - CONFLICT"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Candidat"
+                ],
+                "operationId": "App\\Controller\\CandidatController::removeCandidatAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Candidat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Candidat"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Candidat"
+                ],
+                "operationId": "App\\Controller\\CandidatController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Candidat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Candidat"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/components/responses/204 -  NO CONTENT"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            }
+        },
+        "/candidats/": {
+            "get": {
+                "tags": [
+                    "Liste des Candidat"
+                ],
+                "operationId": "App\\Controller\\CandidatController::listAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Liste de Candidat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CandidatQuickView"
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
         "/companies/{id}": {
             "get": {
+                "tags": [
+                    "Entreprise"
+                ],
                 "operationId": "App\\Controller\\CompanyController::showAction",
                 "parameters": [
                     {
@@ -81,13 +332,120 @@
                         }
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Entreprise"
+                ],
+                "operationId": "App\\Controller\\CompanyController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Company",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Entreprise"
+                ],
+                "operationId": "App\\Controller\\CompanyController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Company",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Entreprise"
+                ],
+                "operationId": "App\\Controller\\CompanyController::removeCompanyAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Company",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Entreprise"
+                ],
+                "operationId": "App\\Controller\\CompanyController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Company",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
                     }
                 }
             }
         },
         "/diplomes/{id}": {
             "get": {
+                "tags": [
+                    "Diplome"
+                ],
                 "operationId": "App\\Controller\\DiplomeController::showAction",
                 "parameters": [
                     {
@@ -106,13 +464,120 @@
                         }
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Diplome"
+                ],
+                "operationId": "App\\Controller\\DiplomeController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Diplome",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Diplome"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Diplome"
+                ],
+                "operationId": "App\\Controller\\DiplomeController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Diplome",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Diplome"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Diplome"
+                ],
+                "operationId": "App\\Controller\\DiplomeController::removeDiplomeAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Diplome",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Diplome"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Diplome"
+                ],
+                "operationId": "App\\Controller\\DiplomeController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Diplome",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Diplome"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
                     }
                 }
             }
         },
         "/formations/{id}": {
             "get": {
+                "tags": [
+                    "Formation"
+                ],
                 "operationId": "App\\Controller\\FormationController::showAction",
                 "parameters": [
                     {
@@ -131,13 +596,120 @@
                         }
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Formation"
+                ],
+                "operationId": "App\\Controller\\FormationController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Formation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Formation"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Formation"
+                ],
+                "operationId": "App\\Controller\\FormationController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Formation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Formation"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Formation"
+                ],
+                "operationId": "App\\Controller\\FormationController::removeFormationAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Formation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Formation"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Formation"
+                ],
+                "operationId": "App\\Controller\\FormationController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Formation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Formation"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
                     }
                 }
             }
         },
         "/langues/{id}": {
             "get": {
+                "tags": [
+                    "Langue"
+                ],
                 "operationId": "App\\Controller\\LangueController::showAction",
                 "parameters": [
                     {
@@ -156,13 +728,120 @@
                         }
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Langue"
+                ],
+                "operationId": "App\\Controller\\LangueController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Langue",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Langue"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Langue"
+                ],
+                "operationId": "App\\Controller\\LangueController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Langue",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Langue"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Langue"
+                ],
+                "operationId": "App\\Controller\\LangueController::removeLangueAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Langue",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Langue"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Langue"
+                ],
+                "operationId": "App\\Controller\\LangueController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Langue",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Langue"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
                     }
                 }
             }
         },
         "/licenses/{id}": {
             "get": {
+                "tags": [
+                    "Permis"
+                ],
                 "operationId": "App\\Controller\\LicenseController::showAction",
                 "parameters": [
                     {
@@ -171,23 +850,130 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Notre License",
+                        "description": "Notre Permis",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/License"
+                                    "$ref": "#/components/schemas/Permis"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Permis"
+                ],
+                "operationId": "App\\Controller\\LicenseController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Permis",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Permis"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Permis"
+                ],
+                "operationId": "App\\Controller\\LicenseController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Permis",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Permis"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Permis"
+                ],
+                "operationId": "App\\Controller\\LicenseController::removeLicenseAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Permis",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Permis"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Permis"
+                ],
+                "operationId": "App\\Controller\\LicenseController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Permis",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Permis"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
                     }
                 }
             }
         },
         "/schools/{id}": {
             "get": {
+                "tags": [
+                    "Ecole"
+                ],
                 "operationId": "App\\Controller\\SchoolController::showAction",
                 "parameters": [
                     {
@@ -200,13 +986,117 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/School"
+                                    "$ref": "#/components/schemas/Ecole"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "$ref": "#/components/responses/NotFound"
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Ecole"
+                ],
+                "operationId": "App\\Controller\\SchoolController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Ecole",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Ecole"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Ecole"
+                ],
+                "operationId": "App\\Controller\\SchoolController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Ecole",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Ecole"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Ecole"
+                ],
+                "operationId": "App\\Controller\\SchoolController::removeSchoolAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Ecole",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Ecole"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Ecole"
+                ],
+                "operationId": "App\\Controller\\SchoolController::createAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Ecole",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Ecole"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404 - NotFound"
                     }
                 }
             }
@@ -214,8 +1104,8 @@
     },
     "components": {
         "schemas": {
-            "ActivityArea": {
-                "description": "Notre Activité",
+            "Secteur d'activité": {
+                "description": "Notre Secteur d'activité",
                 "properties": {
                     "id": {
                         "type": "integer"
@@ -228,7 +1118,7 @@
                 "type": "object"
             },
             "Candidat": {
-                "description": "Notre Candidat",
+                "description": "Notre Candidat en détail",
                 "properties": {
                     "id": {
                         "type": "integer"
@@ -261,6 +1151,63 @@
                         "type": "string",
                         "format": "date-time",
                         "nullable": "true"
+                    },
+                    "short_description": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "langues": {
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Langue"
+                            }
+                        }
+                    },
+                    "licenses": {
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Permis"
+                            }
+                        }
+                    },
+                    "schools": {
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Ecole"
+                            }
+                        }
+                    },
+                    "companies": {
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Company"
+                            }
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "CandidatQuickView": {
+                "description": "Notre Candidat en résumé",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "firstname": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "nullable": "true"
+                    },
+                    "short_description": {
+                        "type": "string",
+                        "nullable": "true"
                     }
                 },
                 "type": "object"
@@ -284,6 +1231,15 @@
                         "type": "string",
                         "format": "date-time",
                         "nullable": "true"
+                    },
+                    "activityAreas": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Secteur d'activité"
+                            }
+                        }
                     }
                 },
                 "type": "object"
@@ -329,6 +1285,15 @@
                         "type": "string",
                         "format": "date-time",
                         "nullable": "true"
+                    },
+                    "diplomes": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Diplome"
+                            }
+                        }
                     }
                 },
                 "type": "object"
@@ -348,10 +1313,13 @@
                         "nullable": "true"
                     }
                 },
-                "type": "object"
+                "type": "object",
+                "xml": {
+                    "name": "Langue"
+                }
             },
-            "License": {
-                "description": "Notre License",
+            "Permis": {
+                "description": "Notre Permis",
                 "properties": {
                     "id": {
                         "type": "integer"
@@ -368,7 +1336,7 @@
                 },
                 "type": "object"
             },
-            "School": {
+            "Ecole": {
                 "description": "Notre Ecole",
                 "properties": {
                     "id": {
@@ -387,13 +1355,102 @@
                         "type": "string",
                         "format": "date-time",
                         "nullable": "true"
+                    },
+                    "formations": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Formation"
+                            }
+                        }
                     }
                 },
                 "type": "object"
             }
         },
         "responses": {
-            "NotFound": {
+            "201 - CREATED": {
+                "description": "Successful creation occurred",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Successful creation occurred (via either POST or PUT)"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "204 -  NO CONTENT": {
+                "description": "Indicates success but nothing is in the response body",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Indicates success but nothing is in the response body, often used for DELETE and PUT operations."
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "400 - BAD REQUEST": {
+                "description": "The request would cause an invalid state",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "The request would cause an invalid state, Domain validation errors, missing data."
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "401 - UNAUTHORIZED": {
+                "description": "Authorization information is missing or invalid.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Authorization information is missing or invalid."
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "403 - FORBIDDEN": {
+                "description": "Error code for when the user is not authorized to perform the operation or the resource is unavailable for some reason.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Error code for when the user is not authorized to perform the operation or the resource is unavailable for some reason"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "404 - NotFound": {
                 "description": "la resource n'existe pas",
                 "content": {
                     "application/json": {
@@ -402,6 +1459,38 @@
                                 "message": {
                                     "type": "string",
                                     "example": "le candidat n'éxiste pas"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "405 - METHOD NOT ALLOWED": {
+                "description": "Requested URL exists, but the requested HTTP method is not applicable.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Requested URL exists, but the requested HTTP method is not applicable."
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "409 - CONFLICT": {
+                "description": "Duplicate entries.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Duplicate entries."
                                 }
                             },
                             "type": "object"
