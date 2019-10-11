@@ -10,6 +10,9 @@
 #### [WIP] Generate APIDOC ->
 ./vendor/bin/openapi --format json --output ./public/swagger/swagger.json ./swagger/swagger.php src
 
+#### Visualize Swagger DOCS
+http://{Your-url}/swagger/index.html/
+
 ## Authors
 
 * [**Franck GARCON**](https://github.com/Franckeddy)
