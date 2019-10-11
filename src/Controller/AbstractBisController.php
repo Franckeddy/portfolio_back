@@ -70,6 +70,11 @@ use OpenApi\Annotations as OA;
  *                  @OA\Property(property="message", type="string", example="Duplicate entries."),
  *          )
  * )
+ * @SecurityScheme(
+ *          bearerFormat="JWT",
+ *          type="apiKey",
+ *          securityScheme="bearer",
+ * )
  */
 class AbstractBisController extends AbstractController
 {
