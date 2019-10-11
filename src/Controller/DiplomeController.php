@@ -45,6 +45,7 @@ class DiplomeController extends AbstractBisController
 	 * 		path="/diplomes/{id}",
 	 * 		tags={"Diplome"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateDiplome"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Diplome",

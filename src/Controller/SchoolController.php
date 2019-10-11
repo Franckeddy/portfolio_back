@@ -46,6 +46,7 @@ class SchoolController extends AbstractBisController
 	 * 		path="/schools/{id}",
 	 * 		tags={"Ecole"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateSchool"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Ecole",

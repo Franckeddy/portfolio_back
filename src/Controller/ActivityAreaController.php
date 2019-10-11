@@ -45,6 +45,7 @@ class ActivityAreaController extends AbstractBisController
 	 * 		path="/activities/{id}",
 	 * 		tags={"Secteur d'activité"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateActivityArea"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Secteur d'activité",

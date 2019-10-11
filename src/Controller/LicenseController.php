@@ -48,6 +48,7 @@ class LicenseController extends AbstractBisController
 	 * 		path="/licenses/{id}",
 	 * 		tags={"Permis"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateLicense"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Permis",

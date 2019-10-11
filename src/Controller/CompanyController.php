@@ -45,6 +45,7 @@ class CompanyController extends AbstractBisController
 	 * 		path="/companies/{id}",
 	 * 		tags={"Entreprise"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateCompany"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Company",

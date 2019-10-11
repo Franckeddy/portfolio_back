@@ -45,6 +45,7 @@ class LangueController extends AbstractBisController
 	 * 		path="/langues/{id}",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateLangue"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Langue",

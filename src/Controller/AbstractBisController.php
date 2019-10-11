@@ -30,28 +30,28 @@ use OpenApi\Annotations as OA;
  * )
  * @OA\Response(
  *          response="400 - BAD REQUEST",
- *          description="The request would cause an invalid state",
+ *          description="Your request could not be processed.",
  *          @OA\JsonContent(
  *                  @OA\Property(property="message", type="string", example="The request would cause an invalid state, Domain validation errors, missing data."),
  *          )
  * )
  * @OA\Response(
  *          response="401 - UNAUTHORIZED",
- *          description="Authorization information is missing or invalid.",
+ *          description="Your request did not include an API key.",
  *          @OA\JsonContent(
  *                  @OA\Property(property="message", type="string", example="Authorization information is missing or invalid."),
  *          )
  * )
  * @OA\Response(
  *          response="403 - FORBIDDEN",
- *          description="Error code for when the user is not authorized to perform the operation or the resource is unavailable for some reason.",
+ *          description="You are not permitted to access this resource.",
  *          @OA\JsonContent(
  *                  @OA\Property(property="message", type="string", example="Error code for when the user is not authorized to perform the operation or the resource is unavailable for some reason"),
  *          )
  * )
  * @OA\Response(
  *          response="404 - NotFound",
- *          description="la resource n'existe pas",
+ *          description="The requested resource could not be found.",
  *          @OA\JsonContent(
  *                  @OA\Property(property="message", type="string", example="le candidat n'éxiste pas"),
  *          )
@@ -70,7 +70,7 @@ use OpenApi\Annotations as OA;
  *                  @OA\Property(property="message", type="string", example="Duplicate entries."),
  *          )
  * )
- * @SecurityScheme(
+ * @OA\SecurityScheme(
  *          bearerFormat="JWT",
  *          type="apiKey",
  *          securityScheme="bearer",

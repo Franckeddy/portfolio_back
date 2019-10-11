@@ -46,6 +46,7 @@ class FormationController extends AbstractBisController
 	 * 		path="/formations/{id}",
 	 * 		tags={"Formation"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateFormation"),
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Formation",
