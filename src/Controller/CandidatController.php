@@ -109,11 +109,84 @@ class CandidatController extends AbstractBisController
 				'errors' => $violations,
 			]);
 		}
-
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($candidat);
 		$em->flush();
+		return new Response('The Candidat is valid! Yes!');
+	}
 
+	/**
+
+	 * @OA\Put(
+	 * 		path="/candidats/{id}",
+	 * 		tags={"Candidat"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Candidat",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
+	 * 		),
+	 * 		@OA\Response(response="204", ref="#/components/responses/204 -  NO CONTENT"),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
+	 * @Rest\Put(
+	 *     "/candidats"
+	 * )
+	 * @ParamConverter(
+	 *     "candidat",
+	 *     converter="fos_rest.request_body",
+	 *     options={"validator"={ "groups"="Create"}
+	 *	 }
+	 * )
+	 */
+	public function PutAction(Candidat $candidat ,ConstraintViolationList $violations)
+	{
+		if (count($violations) > 0) {
+			return $this->render('candidat/validation.html.twig', [
+				'errors' => $violations,
+			]);
+		}
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($candidat);
+		$em->flush();
+		return new Response('The Candidat is valid! Yes!');
+	}
+
+	/**
+	 * @OA\Patch(
+	 * 		path="/candidats/{id}",
+	 * 		tags={"Candidat"},
+	 * 		@OA\Parameter(ref="#/components/parameters/id"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Candidat",
+	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
+	 * 		),
+	 * 		@OA\Response(response="204", ref="#/components/responses/204 -  NO CONTENT"),
+	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+	 * )
+	 * 
+	 * @Rest\Patch(
+	 *     "/candidats"
+	 * )
+	 * @ParamConverter(
+	 *     "candidat",
+	 *     converter="fos_rest.request_body",
+	 *     options={"validator"={ "groups"="Create"}
+	 *	 }
+	 * )
+	 */
+	public function PatchAction(Candidat $candidat ,ConstraintViolationList $violations)
+	{
+		if (count($violations) > 0) {
+			return $this->render('candidat/validation.html.twig', [
+				'errors' => $violations,
+			]);
+		}
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($candidat);
+		$em->flush();
 		return new Response('The Candidat is valid! Yes!');
 	}
 

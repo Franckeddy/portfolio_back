@@ -8,7 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Hateoas\Configuration\Annotation as Hateoas;
 use JMS\Serializer\Annotation as Serializer;
-
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CandidatRepository")
  *
@@ -28,20 +29,23 @@ use JMS\Serializer\Annotation as Serializer;
  *          absolute = true
  *      )
  * )
+ * 
+ * @ExclusionPolicy("all")
  */
 class Candidat
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-	 * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @Expose
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
 	 * @Assert\NotBlank(groups={"Create"})
-	 *
+	 * @Expose
 	 * @Serializer\Since("1.0")
      */
     private $firstname;
@@ -49,28 +53,28 @@ class Candidat
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
 	 * @Assert\NotBlank(groups={"Create"})
-	 *
+	 * @Expose
 	 * @Serializer\Since("1.0")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 *
+	 * @Expose @Expose
 	 * @Serializer\Since("1.0")
      */
     private $adress;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 *
+	 * @Expose @Expose
 	 * @Serializer\Since("1.0")
      */
     private $town;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-	 *
+	 * @Expose @Expose
 	 * @Serializer\Since("1.0")
      */
     private $zipcode;
@@ -82,7 +86,7 @@ class Candidat
 	 *     message = "The email '{{ value }}' is not a valid email.",
 	 *     checkMX = true
 	 * )
-	 *
+	 * @Expose
 	 * @Serializer\Since("1.0")
      */
     private $email;
@@ -91,34 +95,38 @@ class Candidat
      * @ORM\Column(type="date", nullable=true)
 	 * @Assert\Date
 	 * @var string A "Y-m-d" formatted value
-	 *
+	 * @Expose
 	 * @Serializer\Since("1.0")
      */
     private $date_of_birth;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Langue", mappedBy="candidat")
+     *  @Expose
      */
     private $langues;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\License", mappedBy="candidat")
+     *  @Expose
      */
     private $licenses;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\School", mappedBy="candidat")
+     *  @Expose
      */
     private $schools;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Company", mappedBy="candidat")
+     *  @Expose
      */
     private $companies;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 *
+	 * @Expose
 	 * @Serializer\Since("2.0")
      */
     private $short_description;

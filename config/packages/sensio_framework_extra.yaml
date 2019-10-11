@@ -2,7 +2,3 @@ sensio_framework_extra:
     router:
         annotations: false
     request: { converters: true }
-
-fos_rest:
-    body_converter:
-        enabled: true

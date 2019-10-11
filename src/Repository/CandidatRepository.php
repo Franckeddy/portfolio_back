@@ -19,10 +19,9 @@ class CandidatRepository extends ServiceEntityRepository
         parent::__construct($registry, Candidat::class);
     }
 
-    // /**
-    //  * @return Candidat[] Returns an array of Candidat objects
-    //  */
-    /*
+    /**
+     * @return Candidat[] Returns an array of Candidat objects
+    **/
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('c')
@@ -34,8 +33,7 @@ class CandidatRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
-
+    
     /*
     public function findOneBySomeField($value): ?Candidat
     {

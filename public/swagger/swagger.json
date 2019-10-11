@@ -74,6 +74,9 @@
                         "$ref": "#/components/parameters/id"
                     }
                 ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateActivityArea"
+                },
                 "responses": {
                     "200": {
                         "description": "Notre Secteur d'activité",
@@ -174,7 +177,7 @@
                 "tags": [
                     "Candidat"
                 ],
-                "operationId": "App\\Controller\\CandidatController::createAction",
+                "operationId": "App\\Controller\\CandidatController::PutAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -261,7 +264,7 @@
                 "tags": [
                     "Candidat"
                 ],
-                "operationId": "App\\Controller\\CandidatController::createAction",
+                "operationId": "App\\Controller\\CandidatController::PatchAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -375,6 +378,9 @@
                         "$ref": "#/components/parameters/id"
                     }
                 ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateCompany"
+                },
                 "responses": {
                     "200": {
                         "description": "Notre Company",
@@ -507,6 +513,9 @@
                         "$ref": "#/components/parameters/id"
                     }
                 ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateDiplome"
+                },
                 "responses": {
                     "200": {
                         "description": "Notre Diplome",
@@ -639,6 +648,9 @@
                         "$ref": "#/components/parameters/id"
                     }
                 ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateFormation"
+                },
                 "responses": {
                     "200": {
                         "description": "Notre Formation",
@@ -771,6 +783,9 @@
                         "$ref": "#/components/parameters/id"
                     }
                 ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateLangue"
+                },
                 "responses": {
                     "200": {
                         "description": "Notre Langue",
@@ -903,6 +918,9 @@
                         "$ref": "#/components/parameters/id"
                     }
                 ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateLicense"
+                },
                 "responses": {
                     "200": {
                         "description": "Notre Permis",
@@ -1035,6 +1053,9 @@
                         "$ref": "#/components/parameters/id"
                     }
                 ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateSchool"
+                },
                 "responses": {
                     "200": {
                         "description": "Notre Ecole",
@@ -1393,7 +1414,7 @@
                 }
             },
             "400 - BAD REQUEST": {
-                "description": "The request would cause an invalid state",
+                "description": "Your request could not be processed.",
                 "content": {
                     "application/json": {
                         "schema": {
@@ -1409,7 +1430,7 @@
                 }
             },
             "401 - UNAUTHORIZED": {
-                "description": "Authorization information is missing or invalid.",
+                "description": "Your request did not include an API key.",
                 "content": {
                     "application/json": {
                         "schema": {
@@ -1425,7 +1446,7 @@
                 }
             },
             "403 - FORBIDDEN": {
-                "description": "Error code for when the user is not authorized to perform the operation or the resource is unavailable for some reason.",
+                "description": "You are not permitted to access this resource.",
                 "content": {
                     "application/json": {
                         "schema": {
@@ -1441,7 +1462,7 @@
                 }
             },
             "404 - NotFound": {
-                "description": "la resource n'existe pas",
+                "description": "The requested resource could not be found.",
                 "content": {
                     "application/json": {
                         "schema": {
@@ -1501,6 +1522,14 @@
             }
         },
         "requestBodies": {
+            "UpdateActivityArea": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {}
+                    }
+                }
+            },
             "UpdateCandidat": {
                 "required": true,
                 "content": {
@@ -1508,6 +1537,60 @@
                         "schema": {}
                     }
                 }
+            },
+            "UpdateCompany": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {}
+                    }
+                }
+            },
+            "UpdateDiplome": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {}
+                    }
+                }
+            },
+            "UpdateFormation": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {}
+                    }
+                }
+            },
+            "UpdateLangue": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {}
+                    }
+                }
+            },
+            "UpdateLicense": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {}
+                    }
+                }
+            },
+            "UpdateSchool": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {}
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearer": {
+                "type": "apiKey",
+                "bearerFormat": "JWT"
             }
         }
     }
