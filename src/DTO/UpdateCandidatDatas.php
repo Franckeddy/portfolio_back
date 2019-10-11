@@ -9,7 +9,7 @@ use OpenApi\Annotations as OA;
  *      request="UpdateCandidat",
  *      required=true,
  *      @OA\JsonContent(
- *          @OA\Schema(ref="#/components/schemas/CandidatQuickView")
+ *          @OA\Schema(ref="#/components/schemas/Candidat")
  *      )
  * )
  */
