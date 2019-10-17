@@ -44,7 +44,7 @@ class Candidat
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Assert\NotBlank(groups={"Create"})
+	 * @Assert\NotBlank
 	 * @Expose
 	 * @Serializer\Since("1.0")
      */
@@ -52,7 +52,7 @@ class Candidat
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Assert\NotBlank(groups={"Create"})
+	 * @Assert\NotBlank
 	 * @Expose
 	 * @Serializer\Since("1.0")
      */

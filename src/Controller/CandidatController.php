@@ -59,47 +59,11 @@ class CandidatController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/candidats"
-	 * )
-	 * 
-	 * @OA\Put(
-	 * 		path="/candidats/{id}",
-	 * 		tags={"Candidat"},
-	 * 		@OA\Parameter(ref="#/components/parameters/id"),
-	 * 		@OA\Response(
-	 * 				response="200",
-	 * 				description="Notre Candidat",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
-	 * 		),
-	 * 		@OA\Response(response="204", ref="#/components/responses/204 -  NO CONTENT"),
-	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
-	 * )
-	 * 
-	 * @Rest\Put(
-	 *     "/candidats"
-	 * )
-	 * 
-	 * @OA\Patch(
-	 * 		path="/candidats/{id}",
-	 * 		tags={"Candidat"},
-	 * 		@OA\Parameter(ref="#/components/parameters/id"),
-	 * 		@OA\Response(
-	 * 				response="200",
-	 * 				description="Notre Candidat",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
-	 * 		),
-	 * 		@OA\Response(response="204", ref="#/components/responses/204 -  NO CONTENT"),
-	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
-	 * )
-	 * 
-	 * @Rest\Patch(
-	 *     "/candidats"
+	 *     "/candidats/"
 	 * )
 	 * @ParamConverter(
 	 *     "candidat",
-	 *     converter="fos_rest.request_body",
-	 *     options={"validator"={ "groups"="Create"}
-	 *	 }
+	 *     converter="fos_rest.request_body"
 	 * )
 	 */
 	public function createAction(Candidat $candidat ,ConstraintViolationList $violations)
@@ -116,7 +80,6 @@ class CandidatController extends AbstractBisController
 	}
 
 	/**
-
 	 * @OA\Put(
 	 * 		path="/candidats/{id}",
 	 * 		tags={"Candidat"},
@@ -131,13 +94,11 @@ class CandidatController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Put(
-	 *     "/candidats"
+	 *     "/candidats/"
 	 * )
 	 * @ParamConverter(
 	 *     "candidat",
-	 *     converter="fos_rest.request_body",
-	 *     options={"validator"={ "groups"="Create"}
-	 *	 }
+	 *     converter="fos_rest.request_body"
 	 * )
 	 */
 	public function PutAction(Candidat $candidat ,ConstraintViolationList $violations)
@@ -168,13 +129,11 @@ class CandidatController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Patch(
-	 *     "/candidats"
+	 *     "/candidats/{id}"
 	 * )
 	 * @ParamConverter(
 	 *     "candidat",
-	 *     converter="fos_rest.request_body",
-	 *     options={"validator"={ "groups"="Create"}
-	 *	 }
+	 *     converter="fos_rest.request_body"
 	 * )
 	 */
 	public function PatchAction(Candidat $candidat ,ConstraintViolationList $violations)
