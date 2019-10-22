@@ -15,7 +15,7 @@ class ActivityAreaController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
-	 * 		path="/activities/{id}",
+	 * 		path="/api/activities/{id}",
 	 * 		tags={"Secteur d'activité"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(

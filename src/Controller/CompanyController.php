@@ -14,7 +14,7 @@ class CompanyController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
-	 * 		path="/companies/{id}",
+	 * 		path="/api/companies/{id}",
 	 * 		tags={"Entreprise"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -26,7 +26,7 @@ class CompanyController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Get(
-	 *     path = "/companies/{id}",
+	 *     path = "/api/companies/{id}",
 	 *     name = "app_company_show",
 	 *     requirements = {"id"="\d+"}
 	 * )

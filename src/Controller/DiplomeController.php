@@ -13,8 +13,8 @@ use App\Controller\AbstractBisController;
 class DiplomeController extends AbstractBisController
 {
 	/**
-	 * @OA\Get(/api
-	 * 		path="/diplomes/{id}",
+	 * @OA\Get(
+	 * 		path="/api/diplomes/{id}",
 	 * 		tags={"Diplome"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(

@@ -15,7 +15,7 @@ class FormationController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
-	 * 		path="/formations/{id}",
+	 * 		path="/api/formations/{id}",
 	 * 		tags={"Formation"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -27,7 +27,7 @@ class FormationController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Get(
-	 *     path = "/formations/{id}",
+	 *     path = "/api/formations/{id}",
 	 *     name = "app_formation_show",
 	 *     requirements = {"id"="\d+"}
 	 * )

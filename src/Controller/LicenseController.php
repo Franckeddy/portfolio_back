@@ -17,7 +17,7 @@ class LicenseController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
-	 * 		path="/licenses/{id}",
+	 * 		path="/api/licenses/{id}",
 	 * 		tags={"Permis"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -29,7 +29,7 @@ class LicenseController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Get(
-	 *     path = "/licenses/{id}",
+	 *     path = "/api/licenses/{id}",
 	 *     name = "app_license_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
