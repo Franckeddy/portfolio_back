@@ -43,7 +43,7 @@ class FormationController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/formations/{id}",
+	 * 		path="/api/formations/{id}",
 	 * 		tags={"Formation"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateFormation"),
@@ -56,11 +56,11 @@ class FormationController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/formations"
+	 *     "/api/formations"
 	 * )
 	 * 
 	 * @OA\Put(
-	 * 		path="/formations/{id}",
+	 * 		path="/api/formations/{id}",
 	 * 		tags={"Formation"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -72,11 +72,11 @@ class FormationController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Put(
-	 *     "/formations"
+	 *     "/api/formations"
 	 * )
 	 * 
 	 * @OA\Patch(
-	 * 		path="/formations/{id}",
+	 * 		path="/api/formations/{id}",
 	 * 		tags={"Formation"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -88,7 +88,7 @@ class FormationController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Patch(
-	 *     "/formations"
+	 *     "/api/formations"
 	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
@@ -120,7 +120,7 @@ class FormationController extends AbstractBisController
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
 	 * 
 	 * @OA\Delete(
-	 * 		path="/formations/{id}",
+	 * 		path="/api/formations/{id}",
 	 * 		tags={"Formation"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -131,7 +131,7 @@ class FormationController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
-	 * @Rest\Delete("/formations/{id}")
+	 * @Rest\Delete("/api/formations/{id}")
 	 */
 	public function removeFormationAction(Request $request)
 	{

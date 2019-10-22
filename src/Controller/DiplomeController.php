@@ -13,7 +13,7 @@ use App\Controller\AbstractBisController;
 class DiplomeController extends AbstractBisController
 {
 	/**
-	 * @OA\Get(
+	 * @OA\Get(/api
 	 * 		path="/diplomes/{id}",
 	 * 		tags={"Diplome"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
@@ -26,7 +26,7 @@ class DiplomeController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Get(
-	 *     path = "/diplomes/{id}",
+	 *     path = "/api/diplomes/{id}",
 	 *     name = "app_diplome_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
@@ -42,7 +42,7 @@ class DiplomeController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/diplomes/{id}",
+	 * 		path="/api/diplomes/{id}",
 	 * 		tags={"Diplome"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateDiplome"),
@@ -55,11 +55,11 @@ class DiplomeController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/diplomes"
+	 *     "/api/diplomes"
 	 * )
 	 * 
 	 * @OA\Put(
-	 * 		path="/diplomes/{id}",
+	 * 		path="/api/diplomes/{id}",
 	 * 		tags={"Diplome"},	 
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -70,11 +70,11 @@ class DiplomeController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * @Rest\Put(
-	 *     "/diplomes"
+	 *     "/api/diplomes"
 	 * )
 	 * 
 	 * @OA\Patch(
-	 * 		path="/diplomes/{id}",
+	 * 		path="/api/diplomes/{id}",
 	 * 		tags={"Diplome"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -85,7 +85,7 @@ class DiplomeController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * @Rest\Patch(
-	 *     "/diplomes"
+	 *     "/api/diplomes"
 	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
@@ -117,7 +117,7 @@ class DiplomeController extends AbstractBisController
  	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
 	 * 
 	 * @OA\Delete(
-	 * 		path="/diplomes/{id}",
+	 * 		path="/api/diplomes/{id}",
 	 * 		tags={"Diplome"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -128,7 +128,7 @@ class DiplomeController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
- 	 * @Rest\Delete("/diplomes/{id}")
+ 	 * @Rest\Delete("/api/diplomes/{id}")
  	 **/
 	public function removeDiplomeAction(Request $request)
 	{

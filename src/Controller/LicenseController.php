@@ -45,7 +45,7 @@ class LicenseController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/licenses/{id}",
+	 * 		path="/api/licenses/{id}",
 	 * 		tags={"Permis"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateLicense"),
@@ -58,11 +58,11 @@ class LicenseController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/licenses"
+	 *     "/api/licenses"
 	 * )
 	 * 
 	 * @OA\Put(
-	 * 		path="/licenses/{id}",
+	 * 		path="/api/licenses/{id}",
 	 * 		tags={"Permis"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -74,11 +74,11 @@ class LicenseController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Put(
-	 *     "/licenses"
+	 *     "/api/licenses"
 	 * )
 	 * 
 	 * @OA\Patch(
-	 * 		path="/licenses/{id}",
+	 * 		path="/api/licenses/{id}",
 	 * 		tags={"Permis"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -90,7 +90,7 @@ class LicenseController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Patch(
-	 *     "/licenses"
+	 *     "/api/licenses"
 	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
@@ -122,7 +122,7 @@ class LicenseController extends AbstractBisController
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
 	 * 
 	 * @OA\Delete(
-	 * 		path="/licenses/{id}",
+	 * 		path="/api/licenses/{id}",
 	 * 		tags={"Permis"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -133,7 +133,7 @@ class LicenseController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
-	 * @Rest\Delete("/licenses/{id}")
+	 * @Rest\Delete("/api/licenses/{id}")
 	 */
 	public function removeLicenseAction(Request $request)
 	{

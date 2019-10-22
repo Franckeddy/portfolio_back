@@ -17,8 +17,8 @@ class CandidatController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
-	 * 		path="/candidats/{id}",
-	 * 		tags={"Candidat"},
+	 * 		path = "/api/candidats/{id}",
+	 * 		tags = {"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
 	 * 				response="200",
@@ -29,7 +29,7 @@ class CandidatController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Get(
-	 *     path = "/candidats/{id}",
+	 *     path = "/api/candidats/{id}",
 	 *     name = "app_candidat_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
@@ -45,7 +45,7 @@ class CandidatController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/candidats/{id}",
+	 * 		path="/api/candidats/{id}",
 	 * 		tags={"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateCandidat"),
@@ -59,7 +59,7 @@ class CandidatController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/candidats/"
+	 *     "/api/candidats/"
 	 * )
 	 * @ParamConverter(
 	 *     "candidat",
@@ -81,7 +81,7 @@ class CandidatController extends AbstractBisController
 
 	/**
 	 * @OA\Put(
-	 * 		path="/candidats/{id}",
+	 * 		path="/api/candidats/{id}",
 	 * 		tags={"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -94,7 +94,7 @@ class CandidatController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Put(
-	 *     "/candidats/"
+	 *     "/api/candidats/"
 	 * )
 	 * @ParamConverter(
 	 *     "candidat",
@@ -116,7 +116,7 @@ class CandidatController extends AbstractBisController
 
 	/**
 	 * @OA\Patch(
-	 * 		path="/candidats/{id}",
+	 * 		path="/api/candidats/{id}",
 	 * 		tags={"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -129,7 +129,7 @@ class CandidatController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Patch(
-	 *     "/candidats/{id}"
+	 *     "/api/candidats/{id}"
 	 * )
 	 * @ParamConverter(
 	 *     "candidat",
@@ -153,7 +153,7 @@ class CandidatController extends AbstractBisController
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
 	 * 
 	 * @OA\Delete(
-	 * 		path="/candidats/{id}",
+	 * 		path="/api/candidats/{id}",
 	 * 		tags={"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -164,7 +164,7 @@ class CandidatController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
-	 * @Rest\Delete("/candidats/{id}")
+	 * @Rest\Delete("/api/candidats/{id}")
 	 */
 	public function removeCandidatAction(Request $request)
 	{
@@ -181,7 +181,7 @@ class CandidatController extends AbstractBisController
 
 	/**
 	 * @OA\Get(
-	 * 		path="/candidats/",
+	 * 		path="/api/candidats/",
 	 * 		tags={"Liste des Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/"),
 	 * 		@OA\Response(
@@ -190,7 +190,7 @@ class CandidatController extends AbstractBisController
 	 * 				@OA\JsonContent(ref="#/components/schemas/CandidatQuickView")
 	 * 		),
 	 * )
-	 * @Rest\Get("/candidats", name="app_candidat_list")
+	 * @Rest\Get("/api/candidats", name="app_candidat_list")
 	 * @Rest\QueryParam(
 	 *     name="keyword",
 	 *     requirements="[a-zA-Z0-9]",

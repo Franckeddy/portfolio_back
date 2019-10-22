@@ -42,7 +42,7 @@ class CompanyController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/companies/{id}",
+	 * 		path="/api/companies/{id}",
 	 * 		tags={"Entreprise"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateCompany"),
@@ -55,11 +55,11 @@ class CompanyController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/companies"
+	 *     "/api/companies"
 	 * )
 	 * 
 	 * @OA\Put(
-	 * 		path="/companies/{id}",
+	 * 		path="/api/companies/{id}",
 	 * 		tags={"Entreprise"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -71,7 +71,7 @@ class CompanyController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Put(
-	 *     "/companies"
+	 *     "/api/companies"
 	 * )
 	 * 
 	 * @OA\Patch(
@@ -87,7 +87,7 @@ class CompanyController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Patch(
-	 *     "/companies"
+	 *     "/api/companies"
 	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
@@ -119,7 +119,7 @@ class CompanyController extends AbstractBisController
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
 	 * 
 	 * @OA\Delete(
-	 * 		path="/companies/{id}",
+	 * 		path="/api/companies/{id}",
 	 * 		tags={"Entreprise"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -130,7 +130,7 @@ class CompanyController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
-	 * @Rest\Delete("/companies/{id}")
+	 * @Rest\Delete("/api/companies/{id}")
 	 */
 	public function removeCompanyAction(Request $request)
 	{

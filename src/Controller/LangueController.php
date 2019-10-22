@@ -14,7 +14,7 @@ class LangueController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
-	 * 		path="/langues/{id}",
+	 * 		path="/api/langues/{id}",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -26,7 +26,7 @@ class LangueController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Get(
-	 *     path = "/langues/{id}",
+	 *     path = "/api/langues/{id}",
 	 *     name = "app_langue_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
@@ -42,7 +42,7 @@ class LangueController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/langues/{id}",
+	 * 		path="/api/langues/{id}",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateLangue"),
@@ -55,11 +55,11 @@ class LangueController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/langues"
+	 *     "/api/langues"
 	 * )
 	 * 
 	 * @OA\Put(
-	 * 		path="/langues/{id}",
+	 * 		path="/api/langues/{id}",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -71,11 +71,11 @@ class LangueController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Put(
-	 *     "/langues"
+	 *     "/api/langues"
 	 * )
 	 * 
 	 * @OA\Patch(
-	 * 		path="/langues/{id}",
+	 * 		path="/api/langues/{id}",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -87,7 +87,7 @@ class LangueController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Patch(
-	 *     "/langues"
+	 *     "/api/langues"
 	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
@@ -119,7 +119,7 @@ class LangueController extends AbstractBisController
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
 	 * 
 	 * @OA\Delete(
-	 * 		path="/langues/{id}",
+	 * 		path="/api/langues/{id}",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -130,7 +130,7 @@ class LangueController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
-	 * @Rest\Delete("/langues/{id}")
+	 * @Rest\Delete("/api/langues/{id}")
 	 */
 	public function removeLangueAction(Request $request)
 	{

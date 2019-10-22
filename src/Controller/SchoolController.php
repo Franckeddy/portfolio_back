@@ -14,7 +14,7 @@ class SchoolController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
-	 * 		path="/schools/{id}",
+	 * 		path="/api/schools/{id}",
 	 * 		tags={"Ecole"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -27,7 +27,7 @@ class SchoolController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Get(
-	 *     path = "/schools/{id}",
+	 *     path = "/api/schools/{id}",
 	 *     name = "app_school_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
@@ -43,7 +43,7 @@ class SchoolController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/schools/{id}",
+	 * 		path="/api/schools/{id}",
 	 * 		tags={"Ecole"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateSchool"),
@@ -56,11 +56,11 @@ class SchoolController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/schools"
+	 *     "/api/schools"
 	 * )
 	 * 
 	 * @OA\Put(
-	 * 		path="/schools/{id}",
+	 * 		path="/api/schools/{id}",
 	 * 		tags={"Ecole"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -72,11 +72,11 @@ class SchoolController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Put(
-	 *     "/schools"
+	 *     "/api/schools"
 	 * )
 	 * 
 	 * @OA\Patch(
-	 * 		path="/schools/{id}",
+	 * 		path="/api/schools/{id}",
 	 * 		tags={"Ecole"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -88,7 +88,7 @@ class SchoolController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Patch(
-	 *     "/schools"
+	 *     "/api/schools"
 	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
@@ -120,7 +120,7 @@ class SchoolController extends AbstractBisController
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
 	 * 
 	 * @OA\Delete(
-	 * 		path="/schools/{id}",
+	 * 		path="/api/schools/{id}",
 	 * 		tags={"Ecole"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -131,7 +131,7 @@ class SchoolController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
-	 * @Rest\Delete("/schools/{id}")
+	 * @Rest\Delete("/api/schools/{id}")
 	 */
 	public function removeSchoolAction(Request $request)
 	{

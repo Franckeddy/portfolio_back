@@ -26,7 +26,7 @@ class ActivityAreaController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * @Rest\Get(
-	 *     path = "/activities/{id}",
+	 *     path = "/api/activities/{id}",
 	 *     name = "app_activity_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
@@ -42,7 +42,7 @@ class ActivityAreaController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/activities/{id}",
+	 * 		path="/api/activities/{id}",
 	 * 		tags={"Secteur d'activité"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateActivityArea"),
@@ -55,11 +55,11 @@ class ActivityAreaController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/activities"
+	 *     "/api/activities"
 	 * )
 	 * 
 	 * @OA\Put(
-	 * 		path="/activities/{id}",
+	 * 		path="/api/activities/{id}",
 	 * 		tags={"Secteur d'activité"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -71,11 +71,11 @@ class ActivityAreaController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Put(
-	 *     "/activities"
+	 *     "/api/activities"
 	 * )
 	 * 
 	 * @OA\Patch(
-	 * 		path="/activities/{id}",
+	 * 		path="/api/activities/{id}",
 	 * 		tags={"Secteur d'activité"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -87,7 +87,7 @@ class ActivityAreaController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Patch(
-	 *     "/activities"
+	 *     "/api/activities"
 	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
@@ -119,7 +119,7 @@ class ActivityAreaController extends AbstractBisController
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
 	 * 
 	 * @OA\Delete(
-	 * 		path="/activities/{id}",
+	 * 		path="/api/activities/{id}",
 	 * 		tags={"Secteur d'activité"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -130,7 +130,7 @@ class ActivityAreaController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
-	 * @Rest\Delete("/activities/{id}")
+	 * @Rest\Delete("/api/activities/{id}")
 	 */
 	public function removeActivityAction(Request $request)
 	{
