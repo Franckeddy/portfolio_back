@@ -4,17 +4,23 @@ namespace App\Controller;
 
 use App\Entity\Langue;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\Annotations\Route;
+use FOS\RestBundle\View\View;
+use JMS\Serializer\Annotation\Type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
 use OpenApi\Annotations as OA;
-use App\Controller\AbstractBisController;
-class LangueController extends AbstractBisController
+
+/**
+ * @Route("/api")
+ */class LangueController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
-	 * 		path="/api/langues/{id}",
+	 * 		path="/langues/{id}",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -26,7 +32,7 @@ class LangueController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Get(
-	 *     path = "/api/langues/{id}",
+	 *     path = "/langues/{id}",
 	 *     name = "app_langue_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
@@ -42,7 +48,7 @@ class LangueController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/api/langues/{id}",
+	 * 		path="/langues/{id}",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateLangue"),
@@ -55,11 +61,29 @@ class LangueController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/api/langues"
+	 *     "/langues/"
 	 * )
-	 * 
+	 * @ParamConverter(
+	 *     "langue",
+	 *     converter="fos_rest.request_body"
+	 * )
+	 */
+	public function createAction(Langue $langue ,ConstraintViolationList $violations)
+	{
+		if (count($violations) > 0) {
+			return $this->render('candidat/validation.html.twig', [
+				'errors' => $violations,
+			]);
+		}
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($langue);
+		$em->flush();
+		return View::create($langue, Response::HTTP_CREATED , []);
+	}
+
+	/**
 	 * @OA\Put(
-	 * 		path="/api/langues/{id}",
+	 * 		path="/langues/{id}",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -71,11 +95,18 @@ class LangueController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Put(
-	 *     "/api/langues"
+	 *     "/langues/{id}"
 	 * )
-	 * 
+	 * @throws \Doctrine\ORM\ORMException
+	 */
+	public function putAction(Request $request)
+	{
+		return $this->updateLangue($request, true);
+	}
+
+	/**
 	 * @OA\Patch(
-	 * 		path="/api/langues/{id}",
+	 * 		path="/langues/{id}",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -87,7 +118,7 @@ class LangueController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Patch(
-	 *     "/api/langues"
+	 *     "/langues/{id}"
 	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
@@ -95,31 +126,39 @@ class LangueController extends AbstractBisController
 	 *
 	 * @ParamConverter(
 	 *     "langue",
+	 *     class="App/Langue[]",
 	 *     converter="fos_rest.request_body",
 	 *     options={"validator"={ "groups"="Create"}
 	 *	 }
 	 * )
+	 * @Type("App\Entity\Langue")
 	 */
-	public function createAction(Langue $langue ,ConstraintViolationList $violations)
+	public function patchAction(Request $request)
 	{
-		if (count($violations) > 0) {
-			return $this->render('langue/validation.html.twig', [
-				'errors' => $violations,
-			]);
-		}
+		return $this->updateLangue($request, false);
+		// Le paramètre false dit à Symfony de garder les valeurs dans notre
+		// entité si l'utilisateur n'en fournit pas une dans sa requête
+	}
 
+	private function updateLangue(Request $request, $clearMissing)
+	{
+		$langue = $this->get('doctrine.orm.entity_manager')
+			->getRepository('App:Langue')
+			->find($request->get('id'));
+		if (empty($langue)) {
+			return new JsonResponse(['message' => 'Langue not found'], Response::HTTP_NOT_FOUND);
+		}
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($langue);
 		$em->flush();
-
-		return new Response('The langue is valid! Yes!');
+		return new Response('Langue is valid! Yes!');
 	}
 
 	/**
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
 	 * 
 	 * @OA\Delete(
-	 * 		path="/api/langues/{id}",
+	 * 		path="/langues/{id}",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -130,7 +169,7 @@ class LangueController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
-	 * @Rest\Delete("/api/langues/{id}")
+	 * @Rest\Delete("/langues/{id}")
 	 */
 	public function removeLangueAction(Request $request)
 	{
@@ -143,5 +182,55 @@ class LangueController extends AbstractBisController
 			$em->remove($langue);
 			$em->flush();
 		}
+		return new Response('Delete !');
+	}
+
+	/**
+	 * @OA\Get(
+	 * 		path="/langues/",
+	 * 		tags={"Liste des langues"},
+	 * 		@OA\Parameter(ref="#/components/parameters/"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Liste des langues",
+	 * 				@OA\JsonContent(ref="#/components/schemas/LangueQuickView")
+	 * 		),
+	 * )
+	 * @Rest\Get("/langues", name="app_langue_list")
+	 * @Rest\QueryParam(
+	 *     name="keyword",
+	 *     requirements="[a-zA-Z0-9]",
+	 *     nullable=true,
+	 *     description="The keyword to search for."
+	 * )
+	 * @Rest\QueryParam(
+	 *     name="order",
+	 *     requirements="asc|desc",
+	 *     default="asc",
+	 *     description="Sort order (asc or desc)"
+	 * )
+	 * @Rest\QueryParam(
+	 *     name="limit",
+	 *     requirements="\d+",
+	 *     default="15",
+	 *     description="Max number of movies per page."
+	 * )
+	 * @Rest\QueryParam(
+	 *     name="offset",
+	 *     requirements="\d+",
+	 *     default="0",
+	 *     description="The pagination offset"
+	 * )
+	 * @Rest\View()
+	 */
+	public function listAction()
+	{
+		$repository = $this->getDoctrine()->getRepository(Langue::class);
+
+		// query for a single Product by its primary key (usually "id")
+		$langue = $repository->findall();
+
+		return View::create($langue, Response::HTTP_OK , []);
 	}
 }
+

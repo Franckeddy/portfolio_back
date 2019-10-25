@@ -4,17 +4,24 @@ namespace App\Controller;
 
 use App\Entity\Company;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\Annotations\Route;
+use FOS\RestBundle\View\View;
+use JMS\Serializer\Annotation\Type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
 use OpenApi\Annotations as OA;
-use App\Controller\AbstractBisController;
+
+/**
+ * @Route("/api")
+ */
 class CompanyController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
-	 * 		path="/api/companies/{id}",
+	 * 		path="/companies/{id}",
 	 * 		tags={"Entreprise"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -26,7 +33,7 @@ class CompanyController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Get(
-	 *     path = "/api/companies/{id}",
+	 *     path = "/companies/{id}",
 	 *     name = "app_company_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
@@ -42,7 +49,7 @@ class CompanyController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/api/companies/{id}",
+	 * 		path="/companies/{id}",
 	 * 		tags={"Entreprise"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateCompany"),
@@ -55,11 +62,30 @@ class CompanyController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/api/companies"
+	 *     "/companies/"
 	 * )
-	 * 
+	 * )
+	 * @ParamConverter(
+	 *     "company",
+	 *     	converter="fos_rest.request_body"
+	 * )
+	 */
+	public function createAction(Company $company ,ConstraintViolationList $violations)
+	{
+		if (count($violations) > 0) {
+			return $this->render('candidat/validation.html.twig', [
+				'errors' => $violations,
+			]);
+		}
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($company);
+		$em->flush();
+		return View::create($company, Response::HTTP_CREATED , []);
+	}
+
+	/**
 	 * @OA\Put(
-	 * 		path="/api/companies/{id}",
+	 * 		path="/companies/{id}",
 	 * 		tags={"Entreprise"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -71,9 +97,20 @@ class CompanyController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Put(
-	 *     "/api/companies"
+	 *     "/companies/{id}"
 	 * )
-	 * 
+	 * @ParamConverter(	"company",
+	 *     				class="App/Company[]",
+	 *     				converter="fos_rest.request_body"
+	 * )
+	 * @throws \Doctrine\ORM\ORMException
+	 */
+	public function putAction(Request $request)
+	{
+		return $this->updateCompany($request, true);
+	}
+
+	/**
 	 * @OA\Patch(
 	 * 		path="/companies/{id}",
 	 * 		tags={"Entreprise"},
@@ -87,7 +124,7 @@ class CompanyController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Patch(
-	 *     "/api/companies"
+	 *     "/companies/{id}"
 	 * )
 	 * @Rest\View(
 	 *     StatusCode=201
@@ -99,27 +136,35 @@ class CompanyController extends AbstractBisController
 	 *     options={"validator"={ "groups"="Create"}
 	 *	 }
 	 * )
-	 */
-	public function createAction(Company $company ,ConstraintViolationList $violations)
+	 *
+	* @Type("App\Entity\Company")
+	*/
+	public function patchAction(Request $request)
 	{
-		if (count($violations) > 0) {
-			return $this->render('company/validation.html.twig', [
-				'errors' => $violations,
-			]);
-		}
+		return $this->updateCompany($request, false);
+		// Le paramètre false dit à Symfony de garder les valeurs dans notre
+		// entité si l'utilisateur n'en fournit pas une dans sa requête
+	}
 
+	private function updateCompany(Request $request, $clearMissing)
+	{
+		$candidat = $this->get('doctrine.orm.entity_manager')
+			->getRepository('App:Company')
+			->find($request->get('id'));
+		if (empty($company)) {
+			return new JsonResponse(['message' => 'Candidat not found'], Response::HTTP_NOT_FOUND);
+		}
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($company);
 		$em->flush();
-
-		return new Response('The company is valid! Yes!');
+		return new Response('The Candidat is valid! Yes!');
 	}
 
 	/**
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
 	 * 
 	 * @OA\Delete(
-	 * 		path="/api/companies/{id}",
+	 * 		path="/companies/{id}",
 	 * 		tags={"Entreprise"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -130,18 +175,65 @@ class CompanyController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
-	 * @Rest\Delete("/api/companies/{id}")
+	 * @Rest\Delete("/companies/{id}")
 	 */
 	public function removeCompanyAction(Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
 		$company = $em->getRepository('App:Company')
 			->find($request->get('id'));
-
 		if ($company) {
 			$em = $this->getDoctrine()->getManager();
 			$em->remove($company);
 			$em->flush();
 		}
+		return new Response('Delete !');
+	}
+	/**
+	 * @OA\Get(
+	 * 		path="/companies/",
+	 * 		tags={"Liste des Entreprises"},
+	 * 		@OA\Parameter(ref="#/components/parameters/"),
+	 * 		@OA\Response(
+	 * 				response="200",
+	 * 				description="Notre Liste des Entreprises",
+	 * 				@OA\JsonContent(ref="#/components/schemas/CompanyQuickView")
+	 * 		),
+	 * )
+	 * @Rest\Get("/companies", name="app_company_list")
+	 * @Rest\QueryParam(
+	 *     name="keyword",
+	 *     requirements="[a-zA-Z0-9]",
+	 *     nullable=true,
+	 *     description="The keyword to search for."
+	 * )
+	 * @Rest\QueryParam(
+	 *     name="order",
+	 *     requirements="asc|desc",
+	 *     default="asc",
+	 *     description="Sort order (asc or desc)"
+	 * )
+	 * @Rest\QueryParam(
+	 *     name="limit",
+	 *     requirements="\d+",
+	 *     default="15",
+	 *     description="Max number of movies per page."
+	 * )
+	 * @Rest\QueryParam(
+	 *     name="offset",
+	 *     requirements="\d+",
+	 *     default="0",
+	 *     description="The pagination offset"
+	 * )
+	 * @Rest\View()
+	 */
+	public function listAction()
+	{
+		$repository = $this->getDoctrine()->getRepository(Company::class);
+
+		// query for a single Product by its primary key (usually "id")
+		$company = $repository->findall();
+
+		return View::create($company, Response::HTTP_OK , []);
 	}
 }

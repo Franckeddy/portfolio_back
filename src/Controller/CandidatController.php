@@ -4,20 +4,24 @@ namespace App\Controller;
 
 use App\Entity\Candidat;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\Request\ParamFetcherInterface;
+use FOS\RestBundle\Controller\Annotations\Route;
+use FOS\RestBundle\View\View;
+use JMS\Serializer\Annotation\Type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
-use App\Controller\AbstractBisController;
 
+/**
+ * @Route("/api")
+ */
 class CandidatController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
-	 * 		path = "/api/candidats/{id}",
+	 * 		path = "/candidats/{id}",
 	 * 		tags = {"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -29,7 +33,7 @@ class CandidatController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Get(
-	 *     path = "/api/candidats/{id}",
+	 *     path = "/candidats/{id}",
 	 *     name = "app_candidat_show",
 	 *     requirements = {"id"="\d+"}
 	 * )
@@ -45,7 +49,7 @@ class CandidatController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/api/candidats/{id}",
+	 * 		path="/candidats/{id}",
 	 * 		tags={"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateCandidat"),
@@ -59,7 +63,7 @@ class CandidatController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/api/candidats/"
+	 *     "/candidats/"
 	 * )
 	 * @ParamConverter(
 	 *     "candidat",
@@ -76,47 +80,40 @@ class CandidatController extends AbstractBisController
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($candidat);
 		$em->flush();
-		return new Response('The Candidat is valid! Yes!');
+		return View::create($candidat, Response::HTTP_CREATED , []);
 	}
 
 	/**
 	 * @OA\Put(
-	 * 		path="/api/candidats/{id}",
-	 * 		tags={"Candidat"},
+	 *        path="/candidats/{id}",
+	 *        tags={"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
-	 * 				response="200",
-	 * 				description="Notre Candidat",
+	 *                response="200",
+	 *                description="Notre Candidat",
 	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
-	 * 		),
+	 *        ),
 	 * 		@OA\Response(response="204", ref="#/components/responses/204 -  NO CONTENT"),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
-	 * 
+	 *
 	 * @Rest\Put(
-	 *     "/api/candidats/"
+	 *     "/candidats/{id}"
 	 * )
-	 * @ParamConverter(
-	 *     "candidat",
-	 *     converter="fos_rest.request_body"
+	 * @ParamConverter(	"candidat",
+	 *     				class="App/Candidat[]",
+	 *     				converter="fos_rest.request_body"
 	 * )
+	 * @throws \Doctrine\ORM\ORMException
 	 */
-	public function PutAction(Candidat $candidat ,ConstraintViolationList $violations)
+	public function putAction(Request $request)
 	{
-		if (count($violations) > 0) {
-			return $this->render('candidat/validation.html.twig', [
-				'errors' => $violations,
-			]);
-		}
-		$em = $this->getDoctrine()->getManager();
-		$em->persist($candidat);
-		$em->flush();
-		return new Response('The Candidat is valid! Yes!');
+		return $this->updateCandidat($request, true);
 	}
 
 	/**
 	 * @OA\Patch(
-	 * 		path="/api/candidats/{id}",
+	 * 		path="/candidats/{id}",
 	 * 		tags={"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -127,21 +124,32 @@ class CandidatController extends AbstractBisController
 	 * 		@OA\Response(response="204", ref="#/components/responses/204 -  NO CONTENT"),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
-	 * 
 	 * @Rest\Patch(
-	 *     "/api/candidats/{id}"
+	 *     "/candidats/{id}"
 	 * )
-	 * @ParamConverter(
-	 *     "candidat",
-	 *     converter="fos_rest.request_body"
+	 * @Rest\View(
+	 *     StatusCode=201
 	 * )
+	 * @ParamConverter(	"candidat",
+	 *     				class="App/Candidat[]",
+	 *     				converter="fos_rest.request_body"
+	 * )
+	 * @Type("App\Entity\Candidat")
 	 */
-	public function PatchAction(Candidat $candidat ,ConstraintViolationList $violations)
+	public function patchAction(Request $request)
 	{
-		if (count($violations) > 0) {
-			return $this->render('candidat/validation.html.twig', [
-				'errors' => $violations,
-			]);
+		return $this->updateCandidat($request, false);
+		// Le paramètre false dit à Symfony de garder les valeurs dans notre
+		// entité si l'utilisateur n'en fournit pas une dans sa requête
+	}
+
+	private function updateCandidat(Request $request, $clearMissing)
+	{
+		$candidat = $this->get('doctrine.orm.entity_manager')
+			->getRepository('App:Candidat')
+			->find($request->get('id'));
+		if (empty($candidat)) {
+			return new JsonResponse(['message' => 'Candidat not found'], Response::HTTP_NOT_FOUND);
 		}
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($candidat);
@@ -153,7 +161,7 @@ class CandidatController extends AbstractBisController
 	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
 	 * 
 	 * @OA\Delete(
-	 * 		path="/api/candidats/{id}",
+	 * 		path="/candidats/{id}",
 	 * 		tags={"Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\Response(
@@ -164,24 +172,24 @@ class CandidatController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
-	 * @Rest\Delete("/api/candidats/{id}")
+	 * @Rest\Delete("/candidats/{id}")
 	 */
 	public function removeCandidatAction(Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
 		$candidat = $em->getRepository('App:Candidat')
 			->find($request->get('id'));
-
 		if ($candidat) {
 			$em = $this->getDoctrine()->getManager();
 			$em->remove($candidat);
 			$em->flush();
 		}
+		return new Response('Delete !');
 	}
 
 	/**
 	 * @OA\Get(
-	 * 		path="/api/candidats/",
+	 * 		path="/candidats/",
 	 * 		tags={"Liste des Candidat"},
 	 * 		@OA\Parameter(ref="#/components/parameters/"),
 	 * 		@OA\Response(
@@ -190,7 +198,7 @@ class CandidatController extends AbstractBisController
 	 * 				@OA\JsonContent(ref="#/components/schemas/CandidatQuickView")
 	 * 		),
 	 * )
-	 * @Rest\Get("/api/candidats", name="app_candidat_list")
+	 * @Rest\Get("/candidats", name="app_candidat_list")
 	 * @Rest\QueryParam(
 	 *     name="keyword",
 	 *     requirements="[a-zA-Z0-9]",
@@ -217,10 +225,13 @@ class CandidatController extends AbstractBisController
 	 * )
 	 * @Rest\View()
 	 */
-	public function listAction(ParamFetcherInterface $paramFetcher)
+	public function listAction()
 	{
-		$pager = $this->getDoctrine()->getRepository('App:Candidat')->findAll();
+		$repository = $this->getDoctrine()->getRepository(Candidat::class);
 
-		return new JsonResponse($pager);
+		// query for a single Product by its primary key (usually "id")
+		$candidat = $repository->findall();
+
+		return View::create($candidat, Response::HTTP_OK , []);
 	}
 }
