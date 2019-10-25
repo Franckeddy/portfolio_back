@@ -9,6 +9,12 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
+ *      schema="formationQuickView",
+ *      description="Résume des Formations",
+ *      @OA\Property(type="integer", property="id"),
+ *      @OA\Property(type="string", property="name", nullable="true"),
+ * )
+ * @OA\Schema(
  *      schema="Formation",
  *      description="Notre Formation",
  *      @OA\Property(type="integer", property="id"),

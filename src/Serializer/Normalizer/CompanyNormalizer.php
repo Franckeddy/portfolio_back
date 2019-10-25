@@ -9,6 +9,12 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
+ *      schema="CompanyQuickView",
+ *      description="Résume des Entreprises",
+ *      @OA\Property(type="integer", property="id"),
+ *      @OA\Property(type="string", property="name", nullable="true"),
+ * )
+ * @OA\Schema(
  *      schema="Company",
  *      description="Notre Entreprise",
  *      @OA\Property(type="integer", property="id"),

@@ -9,6 +9,12 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
+ *      schema="LicenseQuickView",
+ *      description="Résume des licenses",
+ *      @OA\Property(type="integer", property="id"),
+ *      @OA\Property(type="string", property="name", nullable="true"),
+ * )
+ * @OA\Schema(
  *      schema="Permis",
  *      description="Notre Permis",
  *      @OA\Property(type="integer", property="id"),

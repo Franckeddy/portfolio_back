@@ -9,6 +9,12 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
+ *      schema="DiplomeQuickView",
+ *      description="Résume des Diplomes",
+ *      @OA\Property(type="integer", property="id"),
+ *      @OA\Property(type="string", property="name", nullable="true"),
+ * )
+ * @OA\Schema(
  *      schema="Diplome",
  *      description="Notre Diplome",
  *      @OA\Property(type="integer", property="id"),
