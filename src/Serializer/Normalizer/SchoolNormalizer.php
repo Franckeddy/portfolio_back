@@ -15,7 +15,7 @@ use OpenApi\Annotations as OA;
  *      @OA\Property(type="string", property="name", nullable="true"),
  * )
  * @OA\Schema(
- *      schema="Ecole",
+ *      schema="School",
  *      description="Notre Ecole",
  *      @OA\Property(type="integer", property="id"),
  *      @OA\Property(type="string", property="name", nullable="true"),
@@ -44,7 +44,7 @@ class SchoolNormalizer implements NormalizerInterface, CacheableSupportsMethodIn
 
     public function supportsNormalization($data, $format = null): bool
     {
-        return $data instanceof \App\Entity\BlogPost;
+        return $data instanceof \App\Entity\School;
     }
 
     public function hasCacheableSupportsMethod(): bool

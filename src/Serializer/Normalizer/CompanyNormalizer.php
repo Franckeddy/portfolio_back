@@ -21,7 +21,7 @@ use OpenApi\Annotations as OA;
  *      @OA\Property(type="string", property="name", nullable="true"),
  *      @OA\Property(type="string", format="date-time", property="start_date", nullable="true"),
  *      @OA\Property(type="string", format="date-time", property="end_date", nullable="true"),
- *      @OA\Property(property="activityAreas", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Secteur d'activité"))),
+ *      @OA\Property(property="activityAreas", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Activity"))),
  * )
  */
 class CompanyNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
@@ -44,7 +44,7 @@ class CompanyNormalizer implements NormalizerInterface, CacheableSupportsMethodI
 
     public function supportsNormalization($data, $format = null): bool
     {
-        return $data instanceof \App\Entity\BlogPost;
+        return $data instanceof \App\Entity\Company;
     }
 
     public function hasCacheableSupportsMethod(): bool

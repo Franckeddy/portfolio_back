@@ -43,7 +43,7 @@ class DiplomeNormalizer implements NormalizerInterface, CacheableSupportsMethodI
 
     public function supportsNormalization($data, $format = null): bool
     {
-        return $data instanceof \App\Entity\BlogPost;
+        return $data instanceof \App\Entity\Diplome;
     }
 
     public function hasCacheableSupportsMethod(): bool

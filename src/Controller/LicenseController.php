@@ -29,7 +29,7 @@ class LicenseController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Permis",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Permis")
+	 * 				@OA\JsonContent(ref="#/components/schemas/License")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -58,7 +58,7 @@ class LicenseController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Permis",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Permis")
+	 * 				@OA\JsonContent(ref="#/components/schemas/License")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -91,7 +91,7 @@ class LicenseController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Permis",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Permis")
+	 * 				@OA\JsonContent(ref="#/components/schemas/License")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -116,7 +116,7 @@ class LicenseController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Permis",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Permis")
+	 * 				@OA\JsonContent(ref="#/components/schemas/License")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -167,7 +167,7 @@ class LicenseController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Permis",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Permis")
+	 * 				@OA\JsonContent(ref="#/components/schemas/License")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )

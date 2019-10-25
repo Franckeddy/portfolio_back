@@ -26,8 +26,8 @@ use OpenApi\Annotations as OA;
  *      @OA\Property(type="string", property="email", nullable="true"),
  *      @OA\Property(type="string", format="date-time", property="date_of_birth", nullable="true"),
  *      @OA\Property(property="langues", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Langue"))),
- *      @OA\Property(property="licenses", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Permis"))),
- *      @OA\Property(property="schools", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Ecole"))),
+ *      @OA\Property(property="licenses", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/License"))),
+ *      @OA\Property(property="schools", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/School"))),
  *      @OA\Property(property="companies", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Company"))),
  * )
  */
@@ -51,7 +51,7 @@ class CandidatNormalizer implements NormalizerInterface, CacheableSupportsMethod
 
     public function supportsNormalization($data, $format = null): bool
     {
-        return $data instanceof \App\Entity\BlogPost;
+        return $data instanceof \App\Entity\Candidat;
     }
 
     public function hasCacheableSupportsMethod(): bool

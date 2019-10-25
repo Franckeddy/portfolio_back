@@ -27,7 +27,7 @@ class ActivityAreaController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Secteur d'activité",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Secteur d'activité")
+	 * 				@OA\JsonContent(ref="#/components/schemas/Activity")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -55,7 +55,7 @@ class ActivityAreaController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Secteur d'activité",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Secteur d'activité")
+	 * 				@OA\JsonContent(ref="#/components/schemas/Activity")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -89,7 +89,7 @@ class ActivityAreaController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Secteur d'activité",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Secteur d'activité")
+	 * 				@OA\JsonContent(ref="#/components/schemas/Activity")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -116,7 +116,7 @@ class ActivityAreaController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Secteur d'activité",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Secteur d'activité")
+	 * 				@OA\JsonContent(ref="#/components/schemas/Activity")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -167,7 +167,7 @@ class ActivityAreaController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Secteur d'activité",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Secteur d'activité")
+	 * 				@OA\JsonContent(ref="#/components/schemas/Activity")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -195,7 +195,7 @@ class ActivityAreaController extends AbstractBisController
 	 * 		@OA\Parameter(ref="#/components/parameters/"),
 	 * 		@OA\Response(
 	 * 				response="200",
-	 * 				description="Liste des Secteurs d'activité",
+	 * 				description="Résume des Secteurs d'activité",
 	 * 				@OA\JsonContent(ref="#/components/schemas/ActivityQuickView")
 	 * 		),
 	 * )

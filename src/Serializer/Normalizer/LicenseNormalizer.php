@@ -15,7 +15,7 @@ use OpenApi\Annotations as OA;
  *      @OA\Property(type="string", property="name", nullable="true"),
  * )
  * @OA\Schema(
- *      schema="Permis",
+ *      schema="License",
  *      description="Notre Permis",
  *      @OA\Property(type="integer", property="id"),
  *      @OA\Property(type="string", property="name", nullable="true"),
@@ -42,7 +42,7 @@ class LicenseNormalizer implements NormalizerInterface, CacheableSupportsMethodI
 
     public function supportsNormalization($data, $format = null): bool
     {
-        return $data instanceof \App\Entity\BlogPost;
+        return $data instanceof \App\Entity\License;
     }
 
     public function hasCacheableSupportsMethod(): bool

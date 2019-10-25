@@ -44,7 +44,7 @@ class FormationNormalizer implements NormalizerInterface, CacheableSupportsMetho
 
     public function supportsNormalization($data, $format = null): bool
     {
-        return $data instanceof \App\Entity\BlogPost;
+        return $data instanceof \App\Entity\Formation;
     }
 
     public function hasCacheableSupportsMethod(): bool

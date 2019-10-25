@@ -27,7 +27,7 @@ class SchoolController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Ecole",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Ecole")
+	 * 				@OA\JsonContent(ref="#/components/schemas/School")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * 
@@ -57,7 +57,7 @@ class SchoolController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Ecole",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Ecole")
+	 * 				@OA\JsonContent(ref="#/components/schemas/School")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -91,7 +91,7 @@ class SchoolController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Ecole",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Ecole")
+	 * 				@OA\JsonContent(ref="#/components/schemas/School")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -118,7 +118,7 @@ class SchoolController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Ecole",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Ecole")
+	 * 				@OA\JsonContent(ref="#/components/schemas/School")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
@@ -170,7 +170,7 @@ class SchoolController extends AbstractBisController
 	 * 		@OA\Response(
 	 * 				response="200",
 	 * 				description="Notre Ecole",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Ecole")
+	 * 				@OA\JsonContent(ref="#/components/schemas/School")
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )

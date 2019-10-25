@@ -43,7 +43,7 @@ class LangueNormalizer implements NormalizerInterface, CacheableSupportsMethodIn
 
     public function supportsNormalization($data, $format = null): bool
     {
-        return $data instanceof \App\Entity\BlogPost;
+        return $data instanceof \App\Entity\Langue;
     }
 
     public function hasCacheableSupportsMethod(): bool

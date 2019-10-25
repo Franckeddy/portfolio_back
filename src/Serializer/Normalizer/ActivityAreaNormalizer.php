@@ -15,7 +15,7 @@ use OpenApi\Annotations as OA;
  *      @OA\Property(type="string", property="name", nullable="true"),
  * )
  * @OA\Schema(
- *      schema="Secteur d'activité",
+ *      schema="Activity",
  *      description="Notre Secteur d'activité",
  *      @OA\Property(type="integer", property="id"),
  *      @OA\Property(type="string", property="name", nullable="true"),
@@ -41,7 +41,7 @@ class ActivityAreaNormalizer implements NormalizerInterface, CacheableSupportsMe
 
     public function supportsNormalization($data, $format = null): bool
     {
-        return $data instanceof \App\Entity\BlogPost;
+        return $data instanceof \App\Entity\ActivityArea;
     }
 
     public function hasCacheableSupportsMethod(): bool
