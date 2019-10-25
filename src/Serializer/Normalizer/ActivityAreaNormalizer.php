@@ -9,7 +9,7 @@ use OpenApi\Annotations as OA;
 
 /**
  * @OA\Schema(
- *      schema="ActivityAreaQuickView",
+ *      schema="ActivityQuickView",
  *      description="Résume des Secteurs d'activité",
  *      @OA\Property(type="integer", property="id"),
  *      @OA\Property(type="string", property="name", nullable="true"),

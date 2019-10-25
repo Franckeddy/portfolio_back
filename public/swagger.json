@@ -11,7 +11,7 @@
         }
     ],
     "paths": {
-        "/api/activities/{id}": {
+        "/activities/{id}": {
             "get": {
                 "tags": [
                     "Secteur d'activité"
@@ -42,7 +42,7 @@
                 "tags": [
                     "Secteur d'activité"
                 ],
-                "operationId": "App\\Controller\\ActivityAreaController::createAction",
+                "operationId": "App\\Controller\\ActivityAreaController::putAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -123,7 +123,7 @@
                 "tags": [
                     "Secteur d'activité"
                 ],
-                "operationId": "App\\Controller\\ActivityAreaController::createAction",
+                "operationId": "App\\Controller\\ActivityAreaController::patchAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -146,7 +146,32 @@
                 }
             }
         },
-        "/api/candidats/{id}": {
+        "/activities/": {
+            "get": {
+                "tags": [
+                    "Liste des Secteurs d'activité"
+                ],
+                "operationId": "App\\Controller\\ActivityAreaController::listAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Liste des Secteurs d'activité",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActivityQuickView"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/candidats/{id}": {
             "get": {
                 "tags": [
                     "Candidat"
@@ -177,7 +202,7 @@
                 "tags": [
                     "Candidat"
                 ],
-                "operationId": "App\\Controller\\CandidatController::PutAction",
+                "operationId": "App\\Controller\\CandidatController::putAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -264,7 +289,7 @@
                 "tags": [
                     "Candidat"
                 ],
-                "operationId": "App\\Controller\\CandidatController::PatchAction",
+                "operationId": "App\\Controller\\CandidatController::patchAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -290,7 +315,7 @@
                 }
             }
         },
-        "/api/candidats/": {
+        "/candidats/": {
             "get": {
                 "tags": [
                     "Liste des Candidat"
@@ -315,7 +340,7 @@
                 }
             }
         },
-        "/api/companies/{id}": {
+        "/companies/{id}": {
             "get": {
                 "tags": [
                     "Entreprise"
@@ -346,7 +371,7 @@
                 "tags": [
                     "Entreprise"
                 ],
-                "operationId": "App\\Controller\\CompanyController::createAction",
+                "operationId": "App\\Controller\\CompanyController::putAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -422,14 +447,12 @@
                         "$ref": "#/components/responses/404 - NotFound"
                     }
                 }
-            }
-        },
-        "/companies/{id}": {
+            },
             "patch": {
                 "tags": [
                     "Entreprise"
                 ],
-                "operationId": "App\\Controller\\CompanyController::createAction",
+                "operationId": "App\\Controller\\CompanyController::patchAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -448,6 +471,31 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/404 - NotFound"
+                    }
+                }
+            }
+        },
+        "/companies/": {
+            "get": {
+                "tags": [
+                    "Liste des Entreprises"
+                ],
+                "operationId": "App\\Controller\\CompanyController::listAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notre Liste des Entreprises",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CompanyQuickView"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -587,7 +635,7 @@
                 }
             }
         },
-        "/api/formations/{id}": {
+        "/formations/{id}": {
             "get": {
                 "tags": [
                     "Formation"
@@ -618,7 +666,7 @@
                 "tags": [
                     "Formation"
                 ],
-                "operationId": "App\\Controller\\FormationController::createAction",
+                "operationId": "App\\Controller\\FormationController::putAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -699,7 +747,7 @@
                 "tags": [
                     "Formation"
                 ],
-                "operationId": "App\\Controller\\FormationController::createAction",
+                "operationId": "App\\Controller\\FormationController::patchAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -722,7 +770,32 @@
                 }
             }
         },
-        "/api/langues/{id}": {
+        "/formations/": {
+            "get": {
+                "tags": [
+                    "Liste des Formations"
+                ],
+                "operationId": "App\\Controller\\FormationController::listAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Liste des Formations",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FormationQuickView"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/langues/{id}": {
             "get": {
                 "tags": [
                     "Langue"
@@ -753,7 +826,7 @@
                 "tags": [
                     "Langue"
                 ],
-                "operationId": "App\\Controller\\LangueController::createAction",
+                "operationId": "App\\Controller\\LangueController::putAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -834,7 +907,7 @@
                 "tags": [
                     "Langue"
                 ],
-                "operationId": "App\\Controller\\LangueController::createAction",
+                "operationId": "App\\Controller\\LangueController::patchAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -857,7 +930,32 @@
                 }
             }
         },
-        "/api/licenses/{id}": {
+        "/langues/": {
+            "get": {
+                "tags": [
+                    "Liste des langues"
+                ],
+                "operationId": "App\\Controller\\LangueController::listAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Liste des langues",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LangueQuickView"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/licenses/{id}": {
             "get": {
                 "tags": [
                     "Permis"
@@ -888,7 +986,7 @@
                 "tags": [
                     "Permis"
                 ],
-                "operationId": "App\\Controller\\LicenseController::createAction",
+                "operationId": "App\\Controller\\LicenseController::putAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -969,7 +1067,7 @@
                 "tags": [
                     "Permis"
                 ],
-                "operationId": "App\\Controller\\LicenseController::createAction",
+                "operationId": "App\\Controller\\LicenseController::PatchAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -992,7 +1090,7 @@
                 }
             }
         },
-        "/api/licenses/": {
+        "/licenses/": {
             "get": {
                 "tags": [
                     "Liste des licenses"
@@ -1005,7 +1103,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Notre Liste de License",
+                        "description": "Liste des Licenses",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1017,7 +1115,7 @@
                 }
             }
         },
-        "/api/schools/{id}": {
+        "/schools/{id}": {
             "get": {
                 "tags": [
                     "Ecole"
@@ -1048,7 +1146,7 @@
                 "tags": [
                     "Ecole"
                 ],
-                "operationId": "App\\Controller\\SchoolController::createAction",
+                "operationId": "App\\Controller\\SchoolController::putAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -1129,7 +1227,7 @@
                 "tags": [
                     "Ecole"
                 ],
-                "operationId": "App\\Controller\\SchoolController::createAction",
+                "operationId": "App\\Controller\\SchoolController::patchAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
@@ -1151,10 +1249,48 @@
                     }
                 }
             }
+        },
+        "/schools/": {
+            "get": {
+                "tags": [
+                    "Liste des Ecoles"
+                ],
+                "operationId": "App\\Controller\\SchoolController::listAction",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Liste des Ecoles",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SchoolQuickView"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
+            "ActivityQuickView": {
+                "description": "Résume des Secteurs d'activité",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
             "Secteur d'activité": {
                 "description": "Notre Secteur d'activité",
                 "properties": {
@@ -1253,6 +1389,19 @@
                     }
                 ]
             },
+            "CompanyQuickView": {
+                "description": "Résume des Entreprises",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
             "Company": {
                 "description": "Notre Entreprise",
                 "properties": {
@@ -1284,6 +1433,19 @@
                 },
                 "type": "object"
             },
+            "DiplomeQuickView": {
+                "description": "Résume des Diplomes",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
             "Diplome": {
                 "description": "Notre Diplome",
                 "properties": {
@@ -1301,6 +1463,19 @@
                     "date_obtention": {
                         "type": "string",
                         "format": "date-time",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "FormationQuickView": {
+                "description": "Résume des Formations",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
                         "nullable": "true"
                     }
                 },
@@ -1337,6 +1512,19 @@
                 },
                 "type": "object"
             },
+            "LangueQuickView": {
+                "description": "Résume des langues",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
             "Langue": {
                 "description": "Notre Langue",
                 "properties": {
@@ -1358,7 +1546,7 @@
                 }
             },
             "LicenseQuickView": {
-                "description": "Résume des license",
+                "description": "Résume des licenses",
                 "properties": {
                     "id": {
                         "type": "integer"
@@ -1383,6 +1571,19 @@
                     "date_obtention": {
                         "type": "string",
                         "format": "date-time",
+                        "nullable": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "SchoolQuickView": {
+                "description": "Résume des langues",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string",
                         "nullable": "true"
                     }
                 },
