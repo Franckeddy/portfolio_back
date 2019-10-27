@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\ActivityArea;
+use App\Repository\ActivityAreaRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\View\View;
-use JMS\Serializer\Annotation\Type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
@@ -101,60 +102,18 @@ class ActivityAreaController extends AbstractBisController
 	 *     				class="App/ActivityArea[]",
 	 *     				converter="fos_rest.request_body"
 	 * )
-	 * @throws \Doctrine\ORM\ORMException
 	 */
-	public function putAction(Request $request)
+	public function putAction($id, Request $request, ActivityAreaRepository $ActivityRepository, EntityManagerInterface $em): View
 	{
-		return $this->updateActivity($request, true);
-	}
-
-	/**
-	 * @OA\Patch(
-	 * 		path="/activities/{id}",
-	 * 		tags={"Secteur d'activité"},
-	 * 		@OA\Parameter(ref="#/components/parameters/id"),
-	 * 		@OA\Response(
-	 * 				response="200",
-	 * 				description="Notre Secteur d'activité",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Activity")
-	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
-	 * )
-	 * 
-	 * @Rest\Patch(
-	 *     "/activities/{id}"
-	 * )
-	 * @Rest\View(
-	 *     StatusCode=201
-	 * )
-	 *
-	 * @ParamConverter(
-	 *     "activity",
-	 *     converter="fos_rest.request_body",
-	 *     options={"validator"={ "groups"="Create"}
-	 *	 }
-	 * )
-	 * @Type("App\Entity\ActivityArea")
-	 */
-	public function patchAction(Request $request)
-	{
-		return $this->updateActivity($request, false);
-		// Le paramètre false dit à Symfony de garder les valeurs dans notre
-		// entité si l'utilisateur n'en fournit pas une dans sa requête
-	}
-
-	private function updateActivity(Request $request, $clearMissing)
-	{
-		$activity = $this->get('doctrine.orm.entity_manager')
-			->getRepository('App:ActivityArea')
-			->find($request->get('id'));
-		if (empty($activity)) {
-			return new JsonResponse(['message' => 'ActivityArea not found'], Response::HTTP_NOT_FOUND);
+		$activity = $ActivityRepository->find($id);
+		if (!$activity) {
+			throw new HttpException(404, 'Activity not found');
 		}
-		$em = $this->getDoctrine()->getManager();
+		$postdata = json_decode($request->getContent());
+		$activity->setName($postdata->name);
 		$em->persist($activity);
 		$em->flush();
-		return new Response('The ActivityArea is valid! Yes!');
+		return View::create($activity, Response::HTTP_OK, []);
 	}
 
 	/**

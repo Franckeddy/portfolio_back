@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Company;
+use App\Repository\CompanyRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\View\View;
-use JMS\Serializer\Annotation\Type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\ConstraintViolationList;
 use OpenApi\Annotations as OA;
 
@@ -103,61 +104,20 @@ class CompanyController extends AbstractBisController
 	 *     				class="App/Company[]",
 	 *     				converter="fos_rest.request_body"
 	 * )
-	 * @throws \Doctrine\ORM\ORMException
 	 */
-	public function putAction(Request $request)
+	public function putAction($id, Request $request, CompanyRepository $companyRepository, EntityManagerInterface $em): View
 	{
-		return $this->updateCompany($request, true);
-	}
-
-	/**
-	 * @OA\Patch(
-	 * 		path="/companies/{id}",
-	 * 		tags={"Entreprise"},
-	 * 		@OA\Parameter(ref="#/components/parameters/id"),
-	 * 		@OA\Response(
-	 * 				response="200",
-	 * 				description="Notre Company",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Company")
-	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
-	 * )
-	 * 
-	 * @Rest\Patch(
-	 *     "/companies/{id}"
-	 * )
-	 * @Rest\View(
-	 *     StatusCode=201
-	 * )
-	 *
-	 * @ParamConverter(
-	 *     "company",
-	 *     converter="fos_rest.request_body",
-	 *     options={"validator"={ "groups"="Create"}
-	 *	 }
-	 * )
-	 *
-	* @Type("App\Entity\Company")
-	*/
-	public function patchAction(Request $request)
-	{
-		return $this->updateCompany($request, false);
-		// Le paramètre false dit à Symfony de garder les valeurs dans notre
-		// entité si l'utilisateur n'en fournit pas une dans sa requête
-	}
-
-	private function updateCompany(Request $request, $clearMissing)
-	{
-		$candidat = $this->get('doctrine.orm.entity_manager')
-			->getRepository('App:Company')
-			->find($request->get('id'));
-		if (empty($company)) {
-			return new JsonResponse(['message' => 'Candidat not found'], Response::HTTP_NOT_FOUND);
+		$company = $companyRepository->find($id);
+		if (!$company) {
+			throw new HttpException(404, 'Company not found');
 		}
-		$em = $this->getDoctrine()->getManager();
+		$postdata = json_decode($request->getContent());
+		$company->setName($postdata->name);
+		$company->setStartDate($postdata->start_date);
+		$company->setEndDate($postdata->end_date);
 		$em->persist($company);
 		$em->flush();
-		return new Response('The Candidat is valid! Yes!');
+		return View::create($company, Response::HTTP_OK, []);
 	}
 
 	/**

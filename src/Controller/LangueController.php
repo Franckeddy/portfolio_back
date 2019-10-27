@@ -3,20 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\Langue;
+use App\Repository\LangueRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\View\View;
-use JMS\Serializer\Annotation\Type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\ConstraintViolationList;
 use OpenApi\Annotations as OA;
 
 /**
  * @Route("/api")
- */class LangueController extends AbstractBisController
+ */
+class LangueController extends AbstractBisController
 {
 	/**
 	 * @OA\Get(
@@ -82,6 +84,9 @@ use OpenApi\Annotations as OA;
 	}
 
 	/**
+	 * PUT permet de remplacer (ou créer) une ressource preferable à
+	 * PATCH qui  permet de compléter ou corriger une ressource
+	 *
 	 * @OA\Put(
 	 * 		path="/langues/{id}",
 	 * 		tags={"Langue"},
@@ -97,61 +102,19 @@ use OpenApi\Annotations as OA;
 	 * @Rest\Put(
 	 *     "/langues/{id}"
 	 * )
-	 * @throws \Doctrine\ORM\ORMException
 	 */
-	public function putAction(Request $request)
+	public function putAction($id, Request $request, LangueRepository $langueRepository, EntityManagerInterface $em): View
 	{
-		return $this->updateLangue($request, true);
-	}
-
-	/**
-	 * @OA\Patch(
-	 * 		path="/langues/{id}",
-	 * 		tags={"Langue"},
-	 * 		@OA\Parameter(ref="#/components/parameters/id"),
-	 * 		@OA\Response(
-	 * 				response="200",
-	 * 				description="Notre Langue",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Langue")
-	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
-	 * )
-	 * 
-	 * @Rest\Patch(
-	 *     "/langues/{id}"
-	 * )
-	 * @Rest\View(
-	 *     StatusCode=201
-	 * )
-	 *
-	 * @ParamConverter(
-	 *     "langue",
-	 *     class="App/Langue[]",
-	 *     converter="fos_rest.request_body",
-	 *     options={"validator"={ "groups"="Create"}
-	 *	 }
-	 * )
-	 * @Type("App\Entity\Langue")
-	 */
-	public function patchAction(Request $request)
-	{
-		return $this->updateLangue($request, false);
-		// Le paramètre false dit à Symfony de garder les valeurs dans notre
-		// entité si l'utilisateur n'en fournit pas une dans sa requête
-	}
-
-	private function updateLangue(Request $request, $clearMissing)
-	{
-		$langue = $this->get('doctrine.orm.entity_manager')
-			->getRepository('App:Langue')
-			->find($request->get('id'));
-		if (empty($langue)) {
-			return new JsonResponse(['message' => 'Langue not found'], Response::HTTP_NOT_FOUND);
+		$langue = $langueRepository->find($id);
+		if (!$langue) {
+			throw new HttpException(404, 'Langue not found');
 		}
-		$em = $this->getDoctrine()->getManager();
+		$postdata = json_decode($request->getContent());
+		$langue->setName($postdata->name);
+		$langue->setLevel($postdata->level);
 		$em->persist($langue);
 		$em->flush();
-		return new Response('Langue is valid! Yes!');
+		return View::create($langue, Response::HTTP_OK, []);
 	}
 
 	/**

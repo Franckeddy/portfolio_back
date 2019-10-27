@@ -3,15 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Formation;
+use App\Repository\FormationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\View\View;
-use JMS\Serializer\Annotation\Type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use OpenApi\Annotations as OA;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\ConstraintViolationList;
 
 /**
@@ -98,61 +99,20 @@ class FormationController extends AbstractBisController
 	 * @Rest\Put(
 	 *     "/formations/{id}"
 	 * )
-	 * @throws \Doctrine\ORM\ORMException
 	 */
-	public function putAction(Request $request)
+	public function putAction($id, Request $request, FormationRepository $formationRepository, EntityManagerInterface $em): View
 	{
-		return $this->updateFormation($request, true);
-	}
-
-	/**
-	 * @OA\Patch(
-	 * 		path="/formations/{id}",
-	 * 		tags={"Formation"},
-	 * 		@OA\Parameter(ref="#/components/parameters/id"),
-	 * 		@OA\Response(
-	 * 				response="200",
-	 * 				description="Notre Formation",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Formation")
-	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
-	 * )
-	 * 
-	 * @Rest\Patch(
-	 *     "/formations/{id}"
-	 * )
-	 * @Rest\View(
-	 *     StatusCode=201
-	 * )
-	 *
-	 * @ParamConverter(
-	 *     "formation",
-	 *     	class="App/Formation[]",
-	 *     converter="fos_rest.request_body",
-	 *     options={"validator"={ "groups"="Create"}
-	 *	 }
-	 * )
-	 * @Type("App\Entity\Formation")
-	 */
-	public function patchAction(Request $request)
-	{
-		return $this->updateFormation($request, false);
-		// Le paramètre false dit à Symfony de garder les valeurs dans notre
-		// entité si l'utilisateur n'en fournit pas une dans sa requête
-	}
-
-	private function updateFormation(Request $request, $clearMissing)
-	{
-		$formation = $this->get('doctrine.orm.entity_manager')
-			->getRepository('App:Formation')
-			->find($request->get('id'));
-		if (empty($formation)) {
-			return new JsonResponse(['message' => 'Formation not found'], Response::HTTP_NOT_FOUND);
+		$formation = $formationRepository->find($id);
+		if (!$formation) {
+			throw new HttpException(404, 'Formation not found');
 		}
-		$em = $this->getDoctrine()->getManager();
+		$postdata = json_decode($request->getContent());
+		$formation->setName($postdata->name);
+		$formation->setStartDate($postdata->start_date);
+		$formation->setEndDate($postdata->end_date);
 		$em->persist($formation);
 		$em->flush();
-		return new Response('The Formation is valid! Yes!');
+		return View::create($formation, Response::HTTP_OK, []);
 	}
 
 	/**

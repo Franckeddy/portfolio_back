@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\School;
+use App\Repository\SchoolRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\View\View;
-use JMS\Serializer\Annotation\Type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\ConstraintViolationList;
 use OpenApi\Annotations as OA;
 
@@ -105,59 +106,19 @@ class SchoolController extends AbstractBisController
 	 * )
 	 * @throws \Doctrine\ORM\ORMException
 	 */
-	public function putAction(Request $request)
+	public function putAction($id, Request $request, SchoolRepository $schoolRepository, EntityManagerInterface $em): View
 	{
-		return $this->updateCandidat($request, true);
-	}
-
-	/**
-	 * @OA\Patch(
-	 * 		path="/schools/{id}",
-	 * 		tags={"Ecole"},
-	 * 		@OA\Parameter(ref="#/components/parameters/id"),
-	 * 		@OA\Response(
-	 * 				response="200",
-	 * 				description="Notre Ecole",
-	 * 				@OA\JsonContent(ref="#/components/schemas/School")
-	 * 		),
-	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
-	 * )
-	 * 
-	 * @Rest\Patch(
-	 *     "/schools/{id}"
-	 * )
-	 * @Rest\View(
-	 *     StatusCode=201
-	 * )
-	 *
-	 * @ParamConverter(
-	 *     "school",
-	 *     class="App/School[]",
-	 *     converter="fos_rest.request_body",
-	 *     options={"validator"={ "groups"="Create"}
-	 *	 }
-	 * )
-	 * @Type("App\Entity\School")
-	 */
-	public function patchAction(Request $request)
-	{
-		return $this->updateSchool($request, false);
-		// Le paramètre false dit à Symfony de garder les valeurs dans notre
-		// entité si l'utilisateur n'en fournit pas une dans sa requête
-	}
-
-	private function updateSchool(Request $request, $clearMissing)
-	{
-		$school = $this->get('doctrine.orm.entity_manager')
-			->getRepository('App:School')
-			->find($request->get('id'));
-		if (empty($school)) {
-			return new JsonResponse(['message' => 'School not found'], Response::HTTP_NOT_FOUND);
+		$school = $schoolRepository->find($id);
+		if (!$school) {
+			throw new HttpException(404, 'Company not found');
 		}
-		$em = $this->getDoctrine()->getManager();
+		$postdata = json_decode($request->getContent());
+		$school->setName($postdata->name);
+		$school->setStartDate($postdata->start_date);
+		$school->setEndDate($postdata->end_date);
 		$em->persist($school);
 		$em->flush();
-		return new Response('The school is valid! Yes!');
+		return View::create($school, Response::HTTP_OK, []);
 	}
 
 	/**
