@@ -12,15 +12,15 @@ use OpenApi\Annotations as OA;
  *      schema="FormationQuickView",
  *      description="Résume des Formations",
  *      @OA\Property(type="integer", property="id"),
- *      @OA\Property(type="string", property="name", nullable="true"),
+ *      @OA\Property(type="string", property="name"),
  * )
  * @OA\Schema(
  *      schema="Formation",
  *      description="Notre Formation",
  *      @OA\Property(type="integer", property="id"),
- *      @OA\Property(type="string", property="name", nullable="true"),
- *      @OA\Property(type="string", format="date-time", property="start_date", nullable="true"),
- *      @OA\Property(type="string", format="date-time", property="end_date", nullable="true"),
+ *      @OA\Property(type="string", property="name"),
+ *      @OA\Property(type="string", format="date-time", property="start_date"),
+ *      @OA\Property(type="string", format="date-time", property="end_date"),
  *      @OA\Property(property="diplomes", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Diplome"))),
  * )
  */

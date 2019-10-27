@@ -12,13 +12,13 @@ use OpenApi\Annotations as OA;
  *      schema="ActivityQuickView",
  *      description="Résume des Secteurs d'activité",
  *      @OA\Property(type="integer", property="id"),
- *      @OA\Property(type="string", property="name", nullable="true"),
+ *      @OA\Property(type="string", property="name"),
  * )
  * @OA\Schema(
  *      schema="Activity",
  *      description="Notre Secteur d'activité",
  *      @OA\Property(type="integer", property="id"),
- *      @OA\Property(type="string", property="name", nullable="true"),
+ *      @OA\Property(type="string", property="name"),
  * )
  */
 class ActivityAreaNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface

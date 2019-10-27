@@ -12,15 +12,15 @@ use OpenApi\Annotations as OA;
  *      schema="LangueQuickView",
  *      description="Résume des langues",
  *      @OA\Property(type="integer", property="id"),
- *      @OA\Property(type="string", property="name", nullable="true"),
+ *      @OA\Property(type="string", property="name"),
  * )
  * @OA\Schema(
  *      @OA\Xml(name="Langue"),
  *      schema="Langue",
  *      description="Notre Langue",
  *      @OA\Property(type="integer", property="id"),
- *      @OA\Property(type="string", property="name", nullable="true"),
- *      @OA\Property(type="string", property="level", nullable="true"),
+ *      @OA\Property(type="string", property="name"),
+ *      @OA\Property(type="string", property="level"),
  * )
  */
 class LangueNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface

@@ -12,14 +12,14 @@ use OpenApi\Annotations as OA;
  *      schema="LicenseQuickView",
  *      description="Résume des licenses",
  *      @OA\Property(type="integer", property="id"),
- *      @OA\Property(type="string", property="name", nullable="true"),
+ *      @OA\Property(type="string", property="name"),
  * )
  * @OA\Schema(
  *      schema="License",
  *      description="Notre Permis",
  *      @OA\Property(type="integer", property="id"),
- *      @OA\Property(type="string", property="name", nullable="true"),
- *      @OA\Property(type="string", format="date-time", property="date_obtention", nullable="true"),
+ *      @OA\Property(type="string", property="name"),
+ *      @OA\Property(type="string", format="date-time", property="date_obtention"),
  * )
  */
 class LicenseNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
