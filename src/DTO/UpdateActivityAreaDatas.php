@@ -10,7 +10,7 @@ use OpenApi\Annotations as OA;
  *      request="UpdateActivityArea",
  *      required=true,
  *      @OA\JsonContent(
- *          @OA\Schema(ref="#/components/schemas/Secteur d'acivité")
+ *      	@OA\Schema(ref="#/components/schemas/ActivityArea")
  *      )
  * )
  */

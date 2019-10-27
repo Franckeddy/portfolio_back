@@ -9,7 +9,7 @@ use OpenApi\Annotations as OA;
  *      request="UpdateSchool",
  *      required=true,
  *      @OA\JsonContent(
- *          @OA\Schema(ref="#/components/schemas/Ecole")
+ *          @OA\Schema(ref="#/components/schemas/School")
  *      )
  * )
  */

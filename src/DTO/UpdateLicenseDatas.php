@@ -9,7 +9,7 @@ use OpenApi\Annotations as OA;
  *      request="UpdateLicense",
  *      required=true,
  *      @OA\JsonContent(
- *          @OA\Schema(ref="#/components/schemas/Permis")
+ *          @OA\Schema(ref="#/components/schemas/License")
  *      )
  * )
  */

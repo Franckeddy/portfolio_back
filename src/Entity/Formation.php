@@ -71,7 +71,7 @@ class Formation
         return $this;
     }
 
-    public function getStartDate(): ?\DateTimeInterface
+    public function getStartDate(): string
     {
         return $this->start_date;
     }

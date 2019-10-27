@@ -75,7 +75,7 @@ class Diplome
         return $this;
     }
 
-    public function getDateObtention(): ?\DateTimeInterface
+    public function getDateObtention(): string
     {
         return $this->date_obtention;
     }
