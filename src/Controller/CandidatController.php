@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Candidat;
+use App\Repository\CandidatRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\View\View;
-use JMS\Serializer\Annotation\Type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
@@ -104,57 +105,25 @@ class CandidatController extends AbstractBisController
 	 *     				class="App/Candidat[]",
 	 *     				converter="fos_rest.request_body"
 	 * )
-	 * @throws \Doctrine\ORM\ORMException
 	 */
-	public function putAction(Request $request)
+	public function putAction($id, Request $request, CandidatRepository $candidatRepository, EntityManagerInterface $em): View
 	{
-		return $this->updateCandidat($request, true);
-	}
-
-	/**
-	 * @OA\Patch(
-	 * 		path="/candidats/{id}",
-	 * 		tags={"Candidat"},
-	 * 		@OA\Parameter(ref="#/components/parameters/id"),
-	 * 		@OA\Response(
-	 * 				response="200",
-	 * 				description="Notre Candidat",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
-	 * 		),
-	 * 		@OA\Response(response="204", ref="#/components/responses/204 -  NO CONTENT"),
-	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
-	 * )
-	 * @Rest\Patch(
-	 *     "/candidats/{id}"
-	 * )
-	 * @Rest\View(
-	 *     StatusCode=201
-	 * )
-	 * @ParamConverter(	"candidat",
-	 *     				class="App/Candidat[]",
-	 *     				converter="fos_rest.request_body"
-	 * )
-	 * @Type("App\Entity\Candidat")
-	 */
-	public function patchAction(Request $request)
-	{
-		return $this->updateCandidat($request, false);
-		// Le paramètre false dit à Symfony de garder les valeurs dans notre
-		// entité si l'utilisateur n'en fournit pas une dans sa requête
-	}
-
-	private function updateCandidat(Request $request, $clearMissing)
-	{
-		$candidat = $this->get('doctrine.orm.entity_manager')
-			->getRepository('App:Candidat')
-			->find($request->get('id'));
-		if (empty($candidat)) {
-			return new JsonResponse(['message' => 'Candidat not found'], Response::HTTP_NOT_FOUND);
+		$candidat = $candidatRepository->find($id);
+		if (!$candidat) {
+			throw new HttpException(404, 'Candidat not found');
 		}
-		$em = $this->getDoctrine()->getManager();
+		$postdata = json_decode($request->getContent());
+		$candidat->setLastname($postdata->lastname);
+		$candidat->setFirstname($postdata->firstname);
+		$candidat->setEmail($postdata->email);
+		$candidat->setAdress($postdata->adress);
+		$candidat->setTown($postdata->town);
+		$candidat->setZipcode($postdata->zipcode);
+		$candidat->setDateOfBirth($postdata->date_of_birth);
+		$candidat->setShortDescription($postdata->short_description);
 		$em->persist($candidat);
 		$em->flush();
-		return new Response('The Candidat is valid! Yes!');
+		return View::create($candidat, Response::HTTP_OK, []);
 	}
 
 	/**

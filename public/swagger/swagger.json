@@ -258,35 +258,6 @@
                         "$ref": "#/components/responses/404 - NotFound"
                     }
                 }
-            },
-            "patch": {
-                "tags": [
-                    "Candidat"
-                ],
-                "operationId": "App\\Controller\\CandidatController::patchAction",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/id"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Notre Candidat",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Candidat"
-                                }
-                            }
-                        }
-                    },
-                    "204": {
-                        "$ref": "#/components/responses/204 -  NO CONTENT"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404 - NotFound"
-                    }
-                }
             }
         },
         "/candidats/": {
