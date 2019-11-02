@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @Route("/api")
@@ -105,6 +106,7 @@ class CandidatController extends AbstractBisController
 	 *     				class="App/Candidat[]",
 	 *     				converter="fos_rest.request_body"
 	 * )
+	 * @Type("Entity\Candidat")
 	 */
 	public function putAction($id, Request $request, CandidatRepository $candidatRepository, EntityManagerInterface $em): View
 	{
@@ -119,7 +121,7 @@ class CandidatController extends AbstractBisController
 		$candidat->setAdress($postdata->adress);
 		$candidat->setTown($postdata->town);
 		$candidat->setZipcode($postdata->zipcode);
-		$candidat->setDateOfBirth($postdata->date_of_birth);
+		//$candidat->setDateOfBirth($postdata->date_of_birth);
 		$candidat->setShortDescription($postdata->short_description);
 		$em->persist($candidat);
 		$em->flush();

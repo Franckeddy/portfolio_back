@@ -54,7 +54,7 @@ class ActivityAreaController extends AbstractBisController
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateActivityArea"),
 	 * 		@OA\Response(
-	 * 				response="200",
+	 * 				response="201",
 	 * 				description="Notre Secteur d'activité",
 	 * 				@OA\JsonContent(ref="#/components/schemas/Activity")
 	 * 		),
@@ -65,7 +65,7 @@ class ActivityAreaController extends AbstractBisController
 	 *     "/activities/"
 	 * )
 	 * @ParamConverter(
-	 *     "activityArea",
+	 *     "activity",
 	 *     converter="fos_rest.request_body"
 	 * )
 	 */
@@ -98,7 +98,7 @@ class ActivityAreaController extends AbstractBisController
 	 * @Rest\Put(
 	 *     "/activities/{id}"
 	 * )
-	 * @ParamConverter(	"activityArea",
+	 * @ParamConverter(	"activity",
 	 *     				class="App/ActivityArea[]",
 	 *     				converter="fos_rest.request_body"
 	 * )
