@@ -103,12 +103,10 @@ class DiplomeController extends AbstractBisController
 	 *     "/diplomes/{id}"
 	 * )
 	 *
-	 * @ParamConverter(
-	 *     "diplome",
-	 *     class="App/Diplome[]",
-	 *     converter="fos_rest.request_body",
-	 *     options={"validator"={ "groups"="Create"}
-	 *	 }
+	 * @ParamConverter(	"diplome",
+	 *     				class="App\Entity\Diplome",
+	 *     				converter="fos_rest.request_body"
+	 * )
 	 * )
 	 */
 	public function putAction($id, Request $request, DiplomeRepository $diplomeRepository, EntityManagerInterface $em): View

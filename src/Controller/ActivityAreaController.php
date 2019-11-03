@@ -99,7 +99,7 @@ class ActivityAreaController extends AbstractBisController
 	 *     "/activities/{id}"
 	 * )
 	 * @ParamConverter(	"activity",
-	 *     				class="App/ActivityArea[]",
+	 *     				class="App\Entity\ActivityArea",
 	 *     				converter="fos_rest.request_body"
 	 * )
 	 */

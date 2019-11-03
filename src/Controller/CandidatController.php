@@ -14,7 +14,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
-use JMS\Serializer\Annotation\Type;
 
 /**
  * @Route("/api")
@@ -64,8 +63,9 @@ class CandidatController extends AbstractBisController
 	 * 		@OA\Response(response="409", ref="#/components/responses/409 - CONFLICT")
 	 * )
 	 * 
-	 * @Rest\Post(
-	 *     "/candidats/"
+	 * @Rest\Post(path=
+	 *     "/candidats/",
+	 *     name = "app_candidat_create",
 	 * )
 	 * @ParamConverter(
 	 *     "candidat",
@@ -99,14 +99,15 @@ class CandidatController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 *
-	 * @Rest\Put(
-	 *     "/candidats/{id}"
+	 * @Rest\Put(path=
+	 *     "/candidats/{id}",
+	 *     name = "app_candidat_put",
 	 * )
 	 * @ParamConverter(	"candidat",
-	 *     				class="App/Candidat[]",
+	 *     				class="App\Entity\Candidat",
 	 *     				converter="fos_rest.request_body"
 	 * )
-	 * @Type("Entity\Candidat")
+	 * @return View
 	 */
 	public function putAction($id, Request $request, CandidatRepository $candidatRepository, EntityManagerInterface $em): View
 	{
@@ -121,7 +122,7 @@ class CandidatController extends AbstractBisController
 		$candidat->setAdress($postdata->adress);
 		$candidat->setTown($postdata->town);
 		$candidat->setZipcode($postdata->zipcode);
-		//$candidat->setDateOfBirth($postdata->date_of_birth);
+		$candidat->setDateOfBirth(new \DateTime($postdata->date_of_birth));
 		$candidat->setShortDescription($postdata->short_description);
 		$em->persist($candidat);
 		$em->flush();
@@ -143,7 +144,7 @@ class CandidatController extends AbstractBisController
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
 	 * 
-	 * @Rest\Delete("/candidats/{id}")
+	 * @Rest\Delete(path="/candidats/{id}")
 	 */
 	public function removeCandidatAction(Request $request)
 	{
@@ -169,7 +170,7 @@ class CandidatController extends AbstractBisController
 	 * 				@OA\JsonContent(ref="#/components/schemas/CandidatQuickView")
 	 * 		),
 	 * )
-	 * @Rest\Get("/candidats", name="app_candidat_list")
+	 * @Rest\Get(path="/candidats", name="app_candidat_list")
 	 * @Rest\QueryParam(
 	 *     name="keyword",
 	 *     requirements="[a-zA-Z0-9]",

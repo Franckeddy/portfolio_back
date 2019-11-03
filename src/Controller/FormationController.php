@@ -95,7 +95,10 @@ class FormationController extends AbstractBisController
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
-	 * 
+	 * @ParamConverter(	"Formation",
+	 *     				class="App\Entity\Formation",
+	 *     				converter="fos_rest.request_body"
+	 * )
 	 * @Rest\Put(
 	 *     "/formations/{id}"
 	 * )

@@ -101,7 +101,7 @@ class CompanyController extends AbstractBisController
 	 *     "/companies/{id}"
 	 * )
 	 * @ParamConverter(	"company",
-	 *     				class="App/Company[]",
+	 *     				class="App\Entity\Company",
 	 *     				converter="fos_rest.request_body"
 	 * )
 	 */

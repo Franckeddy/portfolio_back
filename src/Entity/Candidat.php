@@ -31,6 +31,7 @@ use JMS\Serializer\Annotation\Expose;
  * )
  * 
  * @ExclusionPolicy("all")
+ * @ORM\Table(name="candidat")
  */
 class Candidat
 {

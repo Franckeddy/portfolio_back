@@ -101,7 +101,7 @@ class SchoolController extends AbstractBisController
 	 *     "/schools/{id}"
 	 * )
 	 * @ParamConverter(	"school",
-	 *     				class="App/School[]",
+	 *     				class="App\Entity\School",
 	 *     				converter="fos_rest.request_body"
 	 * )
 	 * @throws \Doctrine\ORM\ORMException

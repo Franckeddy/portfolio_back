@@ -83,7 +83,7 @@ class LicenseController extends AbstractBisController
 		return View::create($license, Response::HTTP_CREATED , []);
 	}
 
-	 /**
+	/**
 	 * @OA\Put(
 	 * 		path="/licenses/{id}",
 	 * 		tags={"Permis"},
@@ -100,7 +100,7 @@ class LicenseController extends AbstractBisController
 	 * )
 	  * @ParamConverter(
 	  *     "license",
-	  *     class="App/License[]",
+	  *     class="App\Entity\License",
 	  *     converter="fos_rest.request_body"
 	  * )
 	  */

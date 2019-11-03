@@ -98,7 +98,10 @@ class LangueController extends AbstractBisController
 	 * 		),
 	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
 	 * )
-	 * 
+	 * @ParamConverter(	"Langue",
+	 *     				class="App\Entity\Langue",
+	 *     				converter="fos_rest.request_body"
+	 * )
 	 * @Rest\Put(
 	 *     "/langues/{id}"
 	 * )
