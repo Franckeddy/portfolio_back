@@ -78,7 +78,7 @@
                     "$ref": "#/components/requestBodies/UpdateActivityArea"
                 },
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "Notre Secteur d'activité",
                         "content": {
                             "application/json": {
@@ -1215,14 +1215,6 @@
                     "name": {
                         "type": "string"
                     },
-                    "start_date": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "end_date": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
                     "activityAreas": {
                         "items": {
                             "type": "array",
@@ -1255,9 +1247,6 @@
                     "name": {
                         "type": "string"
                     },
-                    "level": {
-                        "type": "string"
-                    },
                     "date_obtention": {
                         "type": "string",
                         "format": "date-time"
@@ -1285,14 +1274,6 @@
                     },
                     "name": {
                         "type": "string"
-                    },
-                    "start_date": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "end_date": {
-                        "type": "string",
-                        "format": "date-time"
                     },
                     "diplomes": {
                         "items": {
@@ -1324,9 +1305,6 @@
                         "type": "integer"
                     },
                     "name": {
-                        "type": "string"
-                    },
-                    "level": {
                         "type": "string"
                     }
                 },
@@ -1383,14 +1361,6 @@
                     },
                     "name": {
                         "type": "string"
-                    },
-                    "start_date": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "end_date": {
-                        "type": "string",
-                        "format": "date-time"
                     },
                     "formations": {
                         "items": {

@@ -122,7 +122,7 @@ class CandidatController extends AbstractBisController
 		$candidat->setAdress($postdata->adress);
 		$candidat->setTown($postdata->town);
 		$candidat->setZipcode($postdata->zipcode);
-		$candidat->setDateOfBirth(new \DateTime($postdata->date_of_birth));
+		$candidat->setDateOfBirth($postdata->date_of_birth);
 		$candidat->setShortDescription($postdata->short_description);
 		$em->persist($candidat);
 		$em->flush();
