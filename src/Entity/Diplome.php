@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -38,7 +39,7 @@ class Diplome
     private $date_obtention;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Formation", inversedBy="diplomes")
+     * @ORM\ManyToMany(targetEntity="Formation", inversedBy="diplomes", cascade={"persist"})
      */
     private $formation;
 
@@ -81,7 +82,7 @@ class Diplome
         return $this->date_obtention;
     }
 
-    public function setDateObtention(\DateTimeInterface $date_obtention): self
+    public function setDateObtention(DateTimeInterface $date_obtention): self
     {
         $this->date_obtention = $date_obtention;
 

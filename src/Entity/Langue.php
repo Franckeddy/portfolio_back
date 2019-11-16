@@ -30,7 +30,7 @@ class Langue
     private $level;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Candidat", inversedBy="langues")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Candidat", inversedBy="langues", cascade={"persist"})
      */
     private $candidat;
 

@@ -66,6 +66,7 @@ class LicenseController extends AbstractBisController
 	 * )
 	 * @ParamConverter(
 	 *     "license",
+	  *     class="App\Entity\License",
 	 *     converter="fos_rest.request_body"
 	 * )
 	 */

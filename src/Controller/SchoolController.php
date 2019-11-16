@@ -68,6 +68,7 @@ class SchoolController extends AbstractBisController
 	 * )
 	 * @ParamConverter(
 	 *     "school",
+	 *     	class="App\Entity\School",
 	 *     converter="fos_rest.request_body"
 	 * )
 	 */

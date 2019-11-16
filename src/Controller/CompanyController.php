@@ -68,7 +68,8 @@ class CompanyController extends AbstractBisController
 	 * )
 	 * @ParamConverter(
 	 *     "company",
-	 *     	converter="fos_rest.request_body"
+	 *     class="App\Entity\Company",
+	 *     converter="fos_rest.request_body"
 	 * )
 	 */
 	public function createAction(Company $company ,ConstraintViolationList $violations)

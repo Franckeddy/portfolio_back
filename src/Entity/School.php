@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -35,12 +36,12 @@ class School
     private $end_date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Candidat", inversedBy="schools")
+     * @ORM\ManyToMany(targetEntity="Candidat", inversedBy="schools", cascade={"persist"})
      */
     private $candidat;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Formation", mappedBy="school")
+     * @ORM\ManyToMany(targetEntity="Formation", mappedBy="school", cascade={"persist"})
      */
     private $formations;
 
@@ -67,24 +68,24 @@ class School
         return $this;
     }
 
-    public function getStartDate(): ?\DateTimeInterface
+    public function getStartDate(): ?DateTimeInterface
     {
         return $this->start_date;
     }
 
-    public function setStartDate(\DateTimeInterface $start_date): self
+    public function setStartDate(DateTimeInterface $start_date): self
     {
         $this->start_date = $start_date;
 
         return $this;
     }
 
-    public function getEndDate(): ?\DateTimeInterface
+    public function getEndDate(): ?DateTimeInterface
     {
         return $this->end_date;
     }
 
-    public function setEndDate(\DateTimeInterface $end_date): self
+    public function setEndDate(DateTimeInterface $end_date): self
     {
         $this->end_date = $end_date;
 

@@ -67,9 +67,8 @@ class DiplomeController extends AbstractBisController
 	 * )
 	 * @ParamConverter(
 	 *     "diplome",
-	 *     converter="fos_rest.request_body",
-	 *     options={"validator"={ "groups"="Create"}
-	 *	 }
+	 *     	class="App\Entity\Diplome",
+	 *     converter="fos_rest.request_body"
 	 * )
 	 */
 	public function createAction(Diplome $diplome ,ConstraintViolationList $violations)
@@ -103,9 +102,10 @@ class DiplomeController extends AbstractBisController
 	 *     "/diplomes/{id}"
 	 * )
 	 *
-	 * @ParamConverter(	"diplome",
-	 *     				class="App\Entity\Diplome",
-	 *     				converter="fos_rest.request_body"
+	 * @ParamConverter(	
+	 * 		"diplome",
+	 *     	class="App\Entity\Diplome",
+	 *     	converter="fos_rest.request_body"
 	 * )
 	 * )
 	 */

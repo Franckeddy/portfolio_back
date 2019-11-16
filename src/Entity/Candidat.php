@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -93,7 +94,7 @@ class Candidat
     private $email;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
 	 * @Assert\Date
 	 * @var string A "Y-m-d" formatted value
 	 * @Expose
@@ -102,25 +103,25 @@ class Candidat
     private $date_of_birth;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Langue", mappedBy="candidat")
-     *  @Expose
+     * @ORM\ManyToMany(targetEntity=Langue::class, mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @Expose
      */
     private $langues;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\License", mappedBy="candidat")
+     * @ORM\ManyToMany(targetEntity="App\Entity\License", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
      *  @Expose
      */
     private $licenses;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\School", mappedBy="candidat")
+     * @ORM\ManyToMany(targetEntity="App\Entity\School", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
      *  @Expose
      */
     private $schools;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Company", mappedBy="candidat")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Company", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
      *  @Expose
      */
     private $companies;
@@ -217,12 +218,12 @@ class Candidat
         return $this;
     }
 
-    public function getDateOfBirth(): ?DateTimeInterface
+    public function getDateOfBirth(): string
     {
         return $this->date_of_birth;
     }
 
-    public function setDateOfBirth(?DateTimeInterface $date_of_birth): self
+    public function setDateOfBirth(?string $date_of_birth): self
     {
         $this->date_of_birth = $date_of_birth;
 

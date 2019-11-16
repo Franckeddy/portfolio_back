@@ -50,7 +50,7 @@ class LangueController extends AbstractBisController
 
 	/**
 	 * @OA\Post(
-	 * 		path="/langues/{id}",
+	 * 		path="/candidats/{id}/langues",
 	 * 		tags={"Langue"},
 	 * 		@OA\Parameter(ref="#/components/parameters/id"),
 	 * 		@OA\RequestBody(ref="#/components/requestBodies/UpdateLangue"),
@@ -63,10 +63,11 @@ class LangueController extends AbstractBisController
 	 * )
 	 * 
 	 * @Rest\Post(
-	 *     "/langues/"
+	 *     path="/candidats/{id}/langues"
 	 * )
 	 * @ParamConverter(
 	 *     "langue",
+	 * 	    class="App\Entity\Langue",
 	 *     converter="fos_rest.request_body"
 	 * )
 	 */
