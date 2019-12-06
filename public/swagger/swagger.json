@@ -6,7 +6,7 @@
     },
     "servers": [
         {
-            "url": "http://http://localhost:82/api/v1",
+            "url": "http://localhost:82/api/v1",
             "description": "Mon Api pour portfolio"
         }
     ],
@@ -741,19 +741,16 @@
                     }
                 }
             },
-            "post": {
+            "delete": {
                 "tags": [
                     "Langue"
                 ],
-                "operationId": "App\\Controller\\LangueController::createAction",
+                "operationId": "App\\Controller\\LangueController::removeLangueAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
                     }
                 ],
-                "requestBody": {
-                    "$ref": "#/components/requestBodies/UpdateLangue"
-                },
                 "responses": {
                     "200": {
                         "description": "Notre Langue",
@@ -769,17 +766,22 @@
                         "$ref": "#/components/responses/404 - NotFound"
                     }
                 }
-            },
-            "delete": {
+            }
+        },
+        "/candidats/{id}/langues": {
+            "post": {
                 "tags": [
                     "Langue"
                 ],
-                "operationId": "App\\Controller\\LangueController::removeLangueAction",
+                "operationId": "App\\Controller\\LangueController::createAction",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/id"
                     }
                 ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateLangue"
+                },
                 "responses": {
                     "200": {
                         "description": "Notre Langue",
@@ -1215,6 +1217,14 @@
                     "name": {
                         "type": "string"
                     },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
                     "activityAreas": {
                         "items": {
                             "type": "array",
@@ -1247,6 +1257,9 @@
                     "name": {
                         "type": "string"
                     },
+                    "level": {
+                        "type": "string"
+                    },
                     "date_obtention": {
                         "type": "string",
                         "format": "date-time"
@@ -1274,6 +1287,14 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time"
                     },
                     "diplomes": {
                         "items": {
@@ -1305,6 +1326,9 @@
                         "type": "integer"
                     },
                     "name": {
+                        "type": "string"
+                    },
+                    "level": {
                         "type": "string"
                     }
                 },
@@ -1361,6 +1385,14 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time"
                     },
                     "formations": {
                         "items": {

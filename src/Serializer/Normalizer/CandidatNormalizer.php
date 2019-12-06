@@ -31,7 +31,7 @@ use OpenApi\Annotations as OA;
  *      @OA\Property(property="companies", @OA\Items(type="array", @OA\Items(ref="#/components/schemas/Company"))),
  * )
  */
-class CandidatNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
+class CandidatNormalizer extends ObjectNormalizer implements NormalizerInterface
 {
     private $normalizer;
 
@@ -44,18 +44,11 @@ class CandidatNormalizer implements NormalizerInterface, CacheableSupportsMethod
     {
         $data = $this->normalizer->normalize($object, $format, $context);
 
-        // Here: add, edit, or delete some data
-
         return $data;
     }
 
     public function supportsNormalization($data, $format = null): bool
     {
         return $data instanceof \App\Entity\Candidat;
-    }
-
-    public function hasCacheableSupportsMethod(): bool
-    {
-        return true;
     }
 }

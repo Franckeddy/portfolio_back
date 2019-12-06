@@ -15,7 +15,6 @@ use FOS\RestBundle\View\View;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
@@ -113,7 +112,8 @@ class CandidatController extends AbstractBisController
 		Company $company,
 		License $license,
 		Langue $langue,
-		ConstraintViolationListInterface $violations)
+		ConstraintViolationListInterface $violations
+		)
 	{
 		if (count($violations) > 0) {
 			return View::create(array('errors' => $violations), Response::HTTP_BAD_REQUEST);
@@ -126,6 +126,7 @@ class CandidatController extends AbstractBisController
 		$em->persist($langue);
 		$em->flush();
 		return View::create($candidat, Response::HTTP_CREATED , []);
+
 	}
 
 	/**
@@ -158,15 +159,18 @@ class CandidatController extends AbstractBisController
 	 */
 	public function putAction(	$id, 
 								Request $request, 
-								CandidatRepository $candidatRepository, 
+								CandidatRepository $candidatRepository,
 								EntityManagerInterface $em): View
 	{
 		$candidat = $candidatRepository->find($id);
+
 		if (!$candidat) {
 			throw new HttpException(404, 'Candidat not found');
 		}
 		$postdata = json_decode($request->getContent());
-		$candidat->setLastname($postdata->lastname);
+        $em = $this->getDoctrine()->getManager();
+
+        $candidat->setLastname($postdata->lastname);
 		$candidat->setFirstname($postdata->firstname);
 		$candidat->setEmail($postdata->email);
 		$candidat->setAdress($postdata->adress);
@@ -174,28 +178,33 @@ class CandidatController extends AbstractBisController
 		$candidat->setZipcode($postdata->zipcode);
 		$candidat->setDateOfBirth($postdata->date_of_birth);
 		$candidat->setShortDescription($postdata->short_description);
+
+		//$candidat->addLangue($postdata->langues);
+
 		$em->persist($candidat);
 		$em->flush();
 		return View::create($candidat, Response::HTTP_OK, []);
 	}
 
-	/**
-	 * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
-	 *
-	 * @OA\Delete(
-	 *        path="/candidats/{id}",
-	 *        tags={"Candidat"},
-	 * 		@OA\Parameter(ref="#/components/parameters/id"),
-	 * 		@OA\Response(
-	 *                response="200",
-	 *                description="Notre Candidat",
-	 * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
-	 *        ),
-	 * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
-	 * )
-	 *
-	 * @Rest\Delete(path="/candidats/{id}")
-	 */
+    /**
+     * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+     *
+     * @OA\Delete(
+     *        path="/candidats/{id}",
+     *        tags={"Candidat"},
+     * 		@OA\Parameter(ref="#/components/parameters/id"),
+     * 		@OA\Response(
+     *                response="200",
+     *                description="Notre Candidat",
+     * 				@OA\JsonContent(ref="#/components/schemas/Candidat")
+     *        ),
+     * 		@OA\Response(response="404", ref="#/components/responses/404 - NotFound")
+     * )
+     *
+     * @Rest\Delete(path="/candidats/{id}")
+     * @param Request $request
+     * @return Response
+     */
 	public function removeCandidatAction(Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
