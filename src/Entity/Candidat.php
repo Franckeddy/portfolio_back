@@ -104,11 +104,16 @@ class Candidat
     private $date_of_birth;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Langue", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(onDelete="CASCADE")
-     * @ORM\JoinTable(name="langue_candidat",
-     *  joinColumns={@JoinColumn(name="candidat_id", referencedColumnName="id")},
-     *  inverseJoinColumns={@JoinColumn(name="langue_id", referencedColumnName="id", unique=true)}
+     *  @ORM\ManyToMany(targetEntity="App\Entity\Langue", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
+     *  @ORM\JoinColumn(onDelete="CASCADE")
+     *  @ORM\JoinTable(
+     *  name="langue_candidat",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="candidat_id", referencedColumnName="id")
+     * },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="langue_id", referencedColumnName="id", unique=true)
+     *  }
      * )
      * @Expose
      */
@@ -117,9 +122,14 @@ class Candidat
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\License", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(onDelete="CASCADE")
-     * @ORM\JoinTable(name="license_candidat",
-     *  joinColumns={@JoinColumn(name="candidat_id", referencedColumnName="id")},
-     *  inverseJoinColumns={@JoinColumn(name="license_id", referencedColumnName="id", unique=true)}
+     * @ORM\JoinTable(
+     *  name="license_candidat",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="candidat_id", referencedColumnName="id")
+     * },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="license_id", referencedColumnName="id", unique=true)
+     *  }
      * )
      * @Expose
      */
@@ -128,9 +138,14 @@ class Candidat
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\School", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(onDelete="CASCADE")
-     * @ORM\JoinTable(name="school_candidat",
-     *  joinColumns={@JoinColumn(name="candidat_id", referencedColumnName="id")},
-     *  inverseJoinColumns={@JoinColumn(name="school_id", referencedColumnName="id", unique=true)}
+     * @ORM\JoinTable(
+     *  name="school_candidat",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="candidat_id", referencedColumnName="id")
+     * },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="school_id", referencedColumnName="id", unique=true)
+     *  }
      * )
      * @Expose
      */
@@ -139,9 +154,14 @@ class Candidat
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Company", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(onDelete="CASCADE")
-     * @ORM\JoinTable(name="company_candidat",
-     *  joinColumns={@JoinColumn(name="candidat_id", referencedColumnName="id")},
-     *  inverseJoinColumns={@JoinColumn(name="company_id", referencedColumnName="id", unique=true)}
+     * @ORM\JoinTable(
+     *  name="company_candidat",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="candidat_id", referencedColumnName="id")
+     * },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="company_id", referencedColumnName="id", unique=true)
+     *  }
      * )
      * @Expose
      */
