@@ -40,13 +40,13 @@ class Formation
     private $end_date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\School", inversedBy="formations", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\School", mappedBy="formations", cascade={"persist"})
      * @ORM\JoinTable(name="formation_school")
      */
     private $school;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Diplome", mappedBy="formation", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Diplome", inversedBy="formation", cascade={"persist"})
      * @ORM\JoinTable(name="diplome_formation")
      */
     private $diplomes;

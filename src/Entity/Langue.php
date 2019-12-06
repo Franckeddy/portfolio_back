@@ -30,7 +30,13 @@ class Langue
     private $level;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Candidat", inversedBy="langues", cascade={"persist"})
+     * @ORM\ManyToMany
+     * (
+     *  targetEntity="App\Entity\Candidat", 
+     *  mappedBy="langues", 
+     *  cascade={"persist"}, 
+     *  fetch="EXTRA_LAZY"
+     * )
      * @ORM\JoinTable(name="langue_candidat")
      */
     private $candidat;

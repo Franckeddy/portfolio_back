@@ -34,7 +34,7 @@ class License
     private $date_obtention;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Candidat", inversedBy="licenses", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Candidat", mappedBy="licenses", cascade={"persist"})
      * @ORM\JoinTable(name="license_candidat")
      */
     private $candidat;

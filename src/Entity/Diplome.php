@@ -39,7 +39,7 @@ class Diplome
     private $date_obtention;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Formation", inversedBy="diplomes", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Formation", mappedBy="diplomes", cascade={"persist"})
      * @ORM\JoinTable(name="diplome_formation")
      */
     private $formation;
