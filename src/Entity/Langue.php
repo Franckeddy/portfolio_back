@@ -31,6 +31,7 @@ class Langue
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Candidat", inversedBy="langues", cascade={"persist"})
+     * @ORM\JoinTable(name="langue_candidat")
      */
     private $candidat;
 

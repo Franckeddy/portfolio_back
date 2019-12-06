@@ -96,33 +96,40 @@ class Candidat
     /**
      * @ORM\Column(type="string", nullable=true)
 	 * @Assert\Date
-	 * @var string A "Y-m-d" formatted value
 	 * @Expose
 	 * @Serializer\Since("1.0")
      */
     private $date_of_birth;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Langue::class, mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Langue", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinTable(name="langue_candidat")
      * @Expose
      */
     private $langues;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\License", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
-     *  @Expose
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinTable(name="license_candidat")
+     * @Expose
      */
     private $licenses;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\School", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
-     *  @Expose
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinTable(name="school_candidat")
+     * @Expose
      */
     private $schools;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Company", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
-     *  @Expose
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinTable(name="company_candidat")
+     * @Expose
      */
     private $companies;
 
@@ -218,7 +225,7 @@ class Candidat
         return $this;
     }
 
-    public function getDateOfBirth(): string
+    public function getDateOfBirth(): ?string
     {
         return $this->date_of_birth;
     }
