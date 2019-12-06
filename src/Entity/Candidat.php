@@ -11,6 +11,8 @@ use Hateoas\Configuration\Annotation as Hateoas;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use Doctrine\ORM\Mapping\JoinColumn;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CandidatRepository")
  *
@@ -96,33 +98,72 @@ class Candidat
     /**
      * @ORM\Column(type="string", nullable=true)
 	 * @Assert\Date
-	 * @var string A "Y-m-d" formatted value
 	 * @Expose
 	 * @Serializer\Since("1.0")
      */
     private $date_of_birth;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Langue::class, mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
+     *  @ORM\ManyToMany(targetEntity="App\Entity\Langue", inversedBy="candidats", cascade={"persist"}, fetch="EXTRA_LAZY")
+     *  @ORM\JoinColumn(onDelete="CASCADE")
+     *  @ORM\JoinTable(
+     *  name="langue_candidat",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="candidat_id", referencedColumnName="id")
+     * },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="langue_id", referencedColumnName="id", unique=true)
+     *  }
+     * )
      * @Expose
      */
     private $langues;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\License", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
-     *  @Expose
+     * @ORM\ManyToMany(targetEntity="App\Entity\License", inversedBy="candidats", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinTable(
+     *  name="license_candidat",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="candidat_id", referencedColumnName="id")
+     * },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="license_id", referencedColumnName="id", unique=true)
+     *  }
+     * )
+     * @Expose
      */
     private $licenses;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\School", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
-     *  @Expose
+     * @ORM\ManyToMany(targetEntity="App\Entity\School", inversedBy="candidats", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinTable(
+     *  name="school_candidat",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="candidat_id", referencedColumnName="id")
+     * },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="school_id", referencedColumnName="id", unique=true)
+     *  }
+     * )
+     * @Expose
      */
     private $schools;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Company", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
-     *  @Expose
+     * @ORM\ManyToMany(targetEntity="App\Entity\Company", inversedBy="candidats", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinTable(
+     *  name="company_candidat",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="candidat_id", referencedColumnName="id")
+     * },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="company_id", referencedColumnName="id", unique=true)
+     *  }
+     * )
+     * @Expose
      */
     private $companies;
 
@@ -218,7 +259,7 @@ class Candidat
         return $this;
     }
 
-    public function getDateOfBirth(): string
+    public function getDateOfBirth(): ?string
     {
         return $this->date_of_birth;
     }

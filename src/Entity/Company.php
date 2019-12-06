@@ -36,12 +36,14 @@ class Company
     private $end_date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Candidat", inversedBy="companies", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Candidat", mappedBy="companies", cascade={"persist"})
+     * @ORM\JoinTable(name="company_candidat")
      */
     private $candidat;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ActivityArea", mappedBy="company", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\ActivityArea", inversedBy="company", cascade={"persist"})
+     * @ORM\JoinTable(name="activity_area_company")
      */
     private $activityAreas;
 

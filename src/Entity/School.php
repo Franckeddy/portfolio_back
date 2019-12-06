@@ -36,12 +36,14 @@ class School
     private $end_date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Candidat", inversedBy="schools", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Candidat", mappedBy="schools", cascade={"persist"})
+     * @ORM\JoinTable(name="school_candidat")
      */
     private $candidat;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Formation", mappedBy="school", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Formation", inversedBy="school", cascade={"persist"})
+     * @ORM\JoinTable(name="formation_school")
      */
     private $formations;
 

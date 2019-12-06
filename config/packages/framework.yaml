@@ -10,6 +10,9 @@ framework:
         log: true
 
     serializer:
-        enabled: false
+        enabled: true
 
     validation: { enable_annotations: true }
+
+    property_info:
+        enabled: true
