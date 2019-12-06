@@ -104,7 +104,7 @@ class Candidat
     private $date_of_birth;
 
     /**
-     *  @ORM\ManyToMany(targetEntity="App\Entity\Langue", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
+     *  @ORM\ManyToMany(targetEntity="App\Entity\Langue", inversedBy="candidats", cascade={"persist"}, fetch="EXTRA_LAZY")
      *  @ORM\JoinColumn(onDelete="CASCADE")
      *  @ORM\JoinTable(
      *  name="langue_candidat",
@@ -120,7 +120,7 @@ class Candidat
     private $langues;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\License", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\ManyToMany(targetEntity="App\Entity\License", inversedBy="candidats", cascade={"persist"}, fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(onDelete="CASCADE")
      * @ORM\JoinTable(
      *  name="license_candidat",
@@ -136,7 +136,7 @@ class Candidat
     private $licenses;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\School", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\ManyToMany(targetEntity="App\Entity\School", inversedBy="candidats", cascade={"persist"}, fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(onDelete="CASCADE")
      * @ORM\JoinTable(
      *  name="school_candidat",
@@ -152,7 +152,7 @@ class Candidat
     private $schools;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Company", mappedBy="candidat", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Company", inversedBy="candidats", cascade={"persist"}, fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(onDelete="CASCADE")
      * @ORM\JoinTable(
      *  name="company_candidat",
