@@ -64,28 +64,27 @@ class Candidat
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Expose @Expose
+	 * @Expose
 	 * @Serializer\Since("1.0")
      */
     private $adress;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Expose @Expose
+	 * @Expose
 	 * @Serializer\Since("1.0")
      */
     private $town;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-	 * @Expose @Expose
+	 * @Expose
 	 * @Serializer\Since("1.0")
      */
     private $zipcode;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Assert\NotBlank(groups={"Create"})
 	 * @Assert\Email(
 	 *     message = "The email '{{ value }}' is not a valid email.",
 	 *     checkMX = true
@@ -96,9 +95,10 @@ class Candidat
     private $email;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-	 * @Assert\Date
-	 * @Expose
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var string A "d-m-Y" formatted value
+     * @Assert\Date
+     * @Expose
 	 * @Serializer\Since("1.0")
      */
     private $date_of_birth;
