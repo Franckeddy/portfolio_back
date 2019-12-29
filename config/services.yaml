@@ -31,9 +31,3 @@ services:
         public: false
         tags: [serializer.normalizer]
     
-    entity_normalizer:
-        class: App\Serializer\Normalizer\EntityNormalizer
-        public: false
-        autowire: true
-        autoconfigure: true
-        tags: [serializer.normalizer]
