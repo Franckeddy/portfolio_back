@@ -4,10 +4,12 @@
         "title": "API Portfolio",
         "version": "0.1"
     },
-    "servers": [{
-        "url": "http://localhost:82/api/v1",
-        "description": "Mon Api pour portfolio"
-    }],
+    "servers": [
+        {
+            "url": "http://localhost:82/api/v1",
+            "description": "Mon Api pour portfolio"
+        }
+    ],
     "paths": {
         "/candidats/{id}": {
             "get": {
@@ -15,9 +17,11 @@
                     "Candidat"
                 ],
                 "operationId": "App\\Controller\\CandidatController::showAction",
-                "parameters": [{
-                    "$ref": "#/components/parameters/id"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Notre Candidat",
@@ -39,9 +43,11 @@
                     "Candidat"
                 ],
                 "operationId": "App\\Controller\\CandidatController::putAction",
-                "parameters": [{
-                    "$ref": "#/components/parameters/id"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Notre Candidat",
@@ -66,9 +72,11 @@
                     "Candidat"
                 ],
                 "operationId": "App\\Controller\\CandidatController::createAction",
-                "parameters": [{
-                    "$ref": "#/components/parameters/id"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
                 "requestBody": {
                     "$ref": "#/components/requestBodies/UpdateCandidat"
                 },
@@ -96,9 +104,11 @@
                     "Candidat"
                 ],
                 "operationId": "App\\Controller\\CandidatController::removeCandidatAction",
-                "parameters": [{
-                    "$ref": "#/components/parameters/id"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Notre Candidat",
@@ -122,9 +132,11 @@
                     "Liste des Candidat"
                 ],
                 "operationId": "App\\Controller\\CandidatController::listAction",
-                "parameters": [{
-                    "$ref": "#/components/parameters/"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Notre Liste de Candidat",
@@ -142,6 +154,30 @@
     },
     "components": {
         "schemas": {
+            "ActivityQuickView": {
+                "description": "Résume des Secteurs d'activité",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Activity": {
+                "description": "Notre Secteur d'activité",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "CandidatQuickView": {
                 "description": "Notre Candidat en résumé",
                 "properties": {
@@ -213,9 +249,220 @@
                     }
                 },
                 "type": "object",
-                "allOf": [{
-                    "$ref": "#/components/schemas/CandidatQuickView"
-                }]
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CandidatQuickView"
+                    }
+                ]
+            },
+            "CompanyQuickView": {
+                "description": "Résume des Entreprises",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Company": {
+                "description": "Notre Entreprise",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "activityAreas": {
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Activity"
+                            }
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "DiplomeQuickView": {
+                "description": "Résume des Diplomes",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Diplome": {
+                "description": "Notre Diplome",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "level": {
+                        "type": "string"
+                    },
+                    "date_obtention": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "FormationQuickView": {
+                "description": "Résume des Formations",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Formation": {
+                "description": "Notre Formation",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "diplomes": {
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Diplome"
+                            }
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "LangueQuickView": {
+                "description": "Résume des langues",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Langue": {
+                "description": "Notre Langue",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "level": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Langue"
+                }
+            },
+            "LicenseQuickView": {
+                "description": "Résume des licenses",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "License": {
+                "description": "Notre Permis",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "date_obtention": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "SchoolQuickView": {
+                "description": "Résume des langues",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "School": {
+                "description": "Notre Ecole",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "formations": {
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Formation"
+                            }
+                        }
+                    }
+                },
+                "type": "object"
             }
         },
         "responses": {
