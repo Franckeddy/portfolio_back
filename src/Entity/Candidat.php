@@ -32,65 +32,66 @@ use Doctrine\ORM\Mapping\JoinColumn;
  *          absolute = true
  *      )
  * )
- * 
+ *
  * @ExclusionPolicy("all")
  * @ORM\Table(name="candidat")
+ * @ORM\Entity
  */
 class Candidat
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @Expose
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Assert\NotBlank
-	 * @Expose
-	 * @Serializer\Since("1.0")
+     * @Assert\NotBlank
+     * @Expose
+     * @Serializer\Since("1.0")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Assert\NotBlank
-	 * @Expose
-	 * @Serializer\Since("1.0")
+     * @Assert\NotBlank
+     * @Expose
+     * @Serializer\Since("1.0")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Expose
-	 * @Serializer\Since("1.0")
+     * @Expose
+     * @Serializer\Since("1.0")
      */
     private $adress;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Expose
-	 * @Serializer\Since("1.0")
+     * @Expose
+     * @Serializer\Since("1.0")
      */
     private $town;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-	 * @Expose
-	 * @Serializer\Since("1.0")
+     * @Expose
+     * @Serializer\Since("1.0")
      */
     private $zipcode;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Assert\Email(
-	 *     message = "The email '{{ value }}' is not a valid email.",
-	 *     checkMX = true
-	 * )
-	 * @Expose
-	 * @Serializer\Since("1.0")
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
+     * @Expose
+     * @Serializer\Since("1.0")
      */
     private $email;
 
@@ -99,7 +100,7 @@ class Candidat
      * @var string A "d-m-Y" formatted value
      * @Assert\Date
      * @Expose
-	 * @Serializer\Since("1.0")
+     * @Serializer\Since("1.0")
      */
     private $date_of_birth;
 
@@ -169,8 +170,8 @@ class Candidat
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Expose
-	 * @Serializer\Since("2.0")
+     * @Expose
+     * @Serializer\Since("2.0")
      */
     private $short_description;
 

@@ -25,7 +25,7 @@ class ActivityArea
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Company", inversedBy="activityAreas", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Company", mappedBy="activityAreas", cascade={"persist"})
      * @ORM\JoinTable(name="activity_area_company")
      */
     private $company;
